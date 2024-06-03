@@ -6,12 +6,15 @@ import skunk.{Decoder, ~}
 
 case class Member(id: String)
 
-val memberDecoder: Decoder[Member] = varchar(50).map(Member.apply)
+object Member {
+  val memberDecoder: Decoder[Member] = varchar(50).map(Member.apply)
+}
 
 case class Billing(id: String, locationId: String)
-
-val billingDecoder: Decoder[Billing] = (varchar(50) ~ varchar(50)).map { case id ~ locationId =>
-  Billing(id, locationId)
+object Billing {
+  val billingDecoder: Decoder[Billing] = (varchar(50) ~ varchar(50)).map { case id ~ locationId =>
+    Billing(id, locationId)
+  }
 }
 
 case class RefundTransaction(

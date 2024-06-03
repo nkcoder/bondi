@@ -2,6 +2,8 @@ package io.daniel
 package refund
 
 import refund.*
+import refund.Billing.billingDecoder
+import refund.Member.memberDecoder
 
 import cats.effect.*
 import cats.implicits.*
