@@ -20,7 +20,7 @@ import scala.io.Source
 
 object RefundApp extends IOApp {
 
-  private val session: Resource[IO, Session[IO]] = SessionManager.prod
+  private val session: Resource[IO, Session[IO]] = SessionManager.get
 
   private val getMember: Query[String, Member] = sql"SELECT id FROM member WHERE email = $varchar".query(memberDecoder)
   private val getBilling: Query[String *: String *: EmptyTuple, Billing] =
@@ -56,7 +56,7 @@ object RefundApp extends IOApp {
               locationId = billing.locationId,
               memberId = member.id,
               refundAmount = inputRecord.amount,
-              refundReason = inputRecord.reason,
+              refundReason = "MANUAL" + "_" + inputRecord.reason,
               createdAt = nowInUTC,
               updatedAt = nowInUTC
             )
@@ -70,28 +70,30 @@ object RefundApp extends IOApp {
     } yield result
   }
 
-  private def readInputRecords(): List[InputItem] =
-    val source = Source.fromFile("input.json")
-    val fileContent = source.mkString
-    source.close()
+  private def readInputRecords: IO[List[InputItem]] =
+    IO {
+      val source = Source.fromFile("input.json")
+      val fileContent = source.mkString
+      source.close()
 
-    val inputRecords = parser.parse(fileContent).flatMap(_.as[List[InputItem]]) match
-      case Right(records) => records
-      case Left(error)    => throw new RuntimeException(s"Failed to parse input file: $error")
+      val inputRecords = parser.parse(fileContent).flatMap(_.as[List[InputItem]]) match
+        case Right(records) => records
+        case Left(error)    => throw new RuntimeException(s"Failed to parse input file: $error")
 
-    inputRecords
+      inputRecords
+    }
 
-  private def saveToFile(data: String): Unit =
-    val file = Paths.get("output.json")
-    Files.write(file, data.getBytes())
+  private def saveToFile(data: String): IO[Unit] =
+    IO {
+      val file = Paths.get("output.json")
+      Files.write(file, data.getBytes())
+    }
 
   def run(args: List[String]): IO[ExitCode] =
-    val allRecords = readInputRecords()
-
-    allRecords.traverse(generateRefundTransaction).flatMap { transactions =>
-      saveToFile(transactions.flatten.asJson.spaces2)
-      IO {
-        ExitCode.Success
-      }
-    }
+    for {
+      allRecords <- readInputRecords
+      refundTransactions <- allRecords.traverse(generateRefundTransaction)
+      _ <- saveToFile(refundTransactions.flatten.asJson.spaces2)
+      _ = println("Output file generated successfully!")
+    } yield ExitCode.Success
 }
