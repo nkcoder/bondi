@@ -2,3 +2,5 @@
 target
 src/main/resources/application.conf
 .env
+.DS_Store
+**/DS_Store

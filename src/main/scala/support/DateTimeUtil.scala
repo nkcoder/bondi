@@ -1,4 +1,5 @@
 package io.daniel
+package support
 
 import cats.effect.IO
 

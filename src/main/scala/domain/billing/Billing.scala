@@ -1,20 +1,15 @@
 package io.daniel
-package refund
+package domain
 
-import skunk.codec.all.varchar
-import skunk.{Decoder, ~}
-
-case class Member(id: String)
-
-object Member {
-  val memberDecoder: Decoder[Member] = varchar(50).map(Member.apply)
-}
+import cats.syntax.all.*
+import skunk.*
+import skunk.codec.all.*
 
 case class Billing(id: String, locationId: String)
 object Billing {
-  val billingDecoder: Decoder[Billing] = (varchar(50) ~ varchar(50)).map { case id ~ locationId =>
+  val billingCodec: Codec[Billing] = (varchar, varchar).tupled.imap { case (id, locationId) =>
     Billing(id, locationId)
-  }
+  } { billing => (billing.id, billing.locationId) }
 }
 
 case class RefundTransaction(
@@ -36,15 +31,4 @@ case class RefundTransaction(
     refundReason: String,
     refundType: String = "BILLING",
     updatedAt: String
-)
-
-case class InputItem(
-    name: String,
-    email: String,
-    ddDate: String,
-    bsb: String,
-    accountNumber: Long,
-    reason: String,
-    amount: BigDecimal,
-    refundDate: String
 )
