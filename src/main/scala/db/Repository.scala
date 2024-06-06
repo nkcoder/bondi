@@ -19,9 +19,9 @@ trait Repository[F[_], E](session: Session[F]) {
       result        <- preparedQuery.option(argument)
     } yield result
 
-  protected def update[A](command: Command[A], arugment: A)(using F: Sync[F]): F[Unit] =
+  protected def update[A](command: Command[A], argument: A)(using F: Sync[F]): F[Unit] =
     for {
       preparedCommand <- session.prepare(command)
-      _               <- preparedCommand.execute(arugment)
+      _               <- preparedCommand.execute(argument)
     } yield ()
 }

@@ -39,8 +39,8 @@ object Main extends IOApp {
       case Left(configFailure: ConfigReaderFailures) =>
         IO(println(configFailure.prettyPrint(2))).as(ExitCode.Error)
       case Right(dbConfig: DbConfig) =>
-        runSessions(dbConfig)
-//        runOnMember(dbConfig)
+//        runSessions(dbConfig)
+        runOnMember(dbConfig)
 
   private def runSessions(dbConfig: DbConfig): IO[ExitCode] =
     singleSession(dbConfig) *> pooledSession(dbConfig) *> IO.pure(ExitCode.Success)

@@ -1,8 +1,6 @@
 package io.daniel
 package usecases.refund
 
-import refund.*
-
 //import cats.effect.*
 //import cats.implicits.*
 //import io.circe.generic.auto.*
@@ -19,6 +17,17 @@ import refund.*
 //import java.nio.file.{Files, Paths}
 //import java.util.UUID
 //import scala.io.Source
+
+case class InputItem(
+    name: String,
+    email: String,
+    ddDate: String,
+    bsb: String,
+    accountNumber: Long,
+    reason: String,
+    amount: BigDecimal,
+    refundDate: String
+)
 
 object RefundApp
 //object RefundApp extends IOApp:

@@ -2,14 +2,14 @@ package io.daniel
 package domain.member
 
 import db.Repository
-import domain.member.Member
+import domain.member.Member.memberCodec
 
 import cats.effect.Sync
 import cats.syntax.all.*
 import fs2.Stream
 import skunk.codec.all.*
 import skunk.syntax.all.*
-import skunk.{Codec, Command, Query, Session, Void}
+import skunk.{Command, Query, Session, Void}
 
 import java.util.UUID
 
@@ -42,29 +42,23 @@ object MemberRepository {
   def make[F[_]: Sync](session: Session[F]): F[MemberRepository[F]] =
     Sync[F].delay(new MemberRepository[F](session))
 
-  private val codec: Codec[Member] =
-    (varchar(50), varchar(512), varchar(50), numeric(14, 5), int4).tupled.imap {
-      case (id, mobileNumber, email, outstandingBalance, ddFailureCount) =>
-        Member(id, mobileNumber, email, outstandingBalance, ddFailureCount)
-    } { member => (member.id, member.mobileNumber, member.email, member.outstandingBalance, member.ddFailureCount) }
-
   private val selectAll: Query[Void, Member] =
     sql"""
          SELECT id, mobile_number, email, outstanding_balance, dd_failure_count
          FROM member
-       """.query(codec)
+       """.query(memberCodec)
 
   private val selectById: Query[String, Member] =
     sql"""
          SELECT id, mobile_number, email, outstanding_balance, dd_failure_count
          FROM member
          WHERE id = $varchar
-       """.query(codec)
+       """.query(memberCodec)
 
   private val insert: Command[Member] =
     sql"""
          INSERT INTO member (id, mobile_number, email, outstanding_balance, dd_failure_count)
-         VALUES ($codec)
+         VALUES ($memberCodec)
        """.command
 
   private val _update: Command[Member] =
