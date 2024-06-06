@@ -1,5 +1,5 @@
 package io.daniel
-package domain
+package domain.billing
 
 import cats.syntax.all.*
 import skunk.*

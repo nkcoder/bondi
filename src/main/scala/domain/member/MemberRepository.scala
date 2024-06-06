@@ -1,6 +1,7 @@
 package io.daniel
-package db
+package domain.member
 
+import db.Repository
 import domain.member.Member
 
 import cats.effect.Sync

@@ -1,7 +1,7 @@
 package io.daniel
 
-import db.{DbConfig, DbConnection, MemberRepository}
-import domain.member.Member
+import db.{DbConfig, DbConnection}
+import domain.member.{Member, MemberRepository}
 
 import cats.effect.{ExitCode, IO, IOApp}
 import natchez.Trace.Implicits.noop
@@ -39,8 +39,8 @@ object Main extends IOApp {
       case Left(configFailure: ConfigReaderFailures) =>
         IO(println(configFailure.prettyPrint(2))).as(ExitCode.Error)
       case Right(dbConfig: DbConfig) =>
-//        runSessions(dbConfig)
-        runOnMember(dbConfig)
+        runSessions(dbConfig)
+//        runOnMember(dbConfig)
 
   private def runSessions(dbConfig: DbConfig): IO[ExitCode] =
     singleSession(dbConfig) *> pooledSession(dbConfig) *> IO.pure(ExitCode.Success)
