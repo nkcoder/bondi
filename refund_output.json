@@ -1,6 +1,6 @@
 [
   {
-    "id" : "bf68ef71-0aad-4ed3-b812-51f66b9c7308",
+    "id" : "748a73c1-4601-40e1-89f0-0e5cd4e874c7",
     "billingId" : "546826a1-5095-489d-8c66-bc8527f76699",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-428",
@@ -9,7 +9,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:09.978Z",
+    "createdAt" : "2024-06-07T07:05:49.628Z",
     "locationId" : "07f68751-bd11-5664-9767-8afff2489c97",
     "memberId" : "aef69649-fcb3-4415-9902-3052780533dd",
     "refundAmount" : 87.7,
@@ -17,10 +17,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:09.978Z"
+    "updatedAt" : "2024-06-07T07:05:49.628Z"
   },
   {
-    "id" : "10a9d2bb-46f3-409c-aa2a-ec67ddf05a0b",
+    "id" : "a4b9eb5f-cae5-462e-bb88-14ace6a177ab",
     "billingId" : "d145b30c-3db0-4032-b68d-aacb731583ee",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "012-341",
@@ -29,7 +29,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.079Z",
+    "createdAt" : "2024-06-07T07:05:49.747Z",
     "locationId" : "07f68751-bd11-5664-9767-8afff2489c97",
     "memberId" : "6806804b-2ec0-4938-b31e-e813ba89341a",
     "refundAmount" : 47.8,
@@ -37,10 +37,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.079Z"
+    "updatedAt" : "2024-06-07T07:05:49.747Z"
   },
   {
-    "id" : "d6ef89e3-8838-4e34-9e7f-bbd00ce8de2b",
+    "id" : "c6c8050f-e72c-4296-9cb3-4185af15b4ca",
     "billingId" : "cc04cf18-d06c-49ac-92f1-068972039000",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "923-100",
@@ -49,7 +49,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.186Z",
+    "createdAt" : "2024-06-07T07:05:49.881Z",
     "locationId" : "827376ac-1959-523c-be87-eb93694d115d",
     "memberId" : "9421801f-1176-4f33-8a7b-cdfd3301f1d4",
     "refundAmount" : 47.8,
@@ -57,10 +57,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.186Z"
+    "updatedAt" : "2024-06-07T07:05:49.881Z"
   },
   {
-    "id" : "98c91c78-5af6-464c-81c2-cbea129fd9bd",
+    "id" : "34d44d5e-dc34-4f39-8572-376192cc522f",
     "billingId" : "f8c5f714-6063-4942-9b32-7d066cc45579",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "923-100",
@@ -69,7 +69,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.289Z",
+    "createdAt" : "2024-06-07T07:05:50.007Z",
     "locationId" : "f2210d7c-e909-5c37-9d72-dd618c885481",
     "memberId" : "51ca5c29-e1ef-5353-b39d-2de44313e942",
     "refundAmount" : 46.9,
@@ -77,10 +77,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS) His timehold for the 2/5/24 debit was processed in Clubware on 26/4/24 however it did not transfer over to The Hub.",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.289Z"
+    "updatedAt" : "2024-06-07T07:05:50.007Z"
   },
   {
-    "id" : "e1b151a2-3989-415b-b5ff-c4fd95d3892e",
+    "id" : "a344be81-87d4-4f58-bbdb-a74e7bab08dc",
     "billingId" : "a5aa92e7-5e27-4e50-8256-dd6b81d67bc9",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-028",
@@ -89,7 +89,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.397Z",
+    "createdAt" : "2024-06-07T07:05:50.134Z",
     "locationId" : "9187dd87-8ac5-5509-a56e-0cce8dbb4216",
     "memberId" : "1e8398ff-9d48-4387-af20-6ad7db159b9f",
     "refundAmount" : 47.8,
@@ -97,10 +97,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.397Z"
+    "updatedAt" : "2024-06-07T07:05:50.134Z"
   },
   {
-    "id" : "708cfbb1-e5b3-4d53-9ec3-7f818c3c680c",
+    "id" : "c02d6305-7fe5-412f-9333-00f546838906",
     "billingId" : "2c25571d-9931-4f8e-97ae-e06be78f9c43",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "923-100",
@@ -109,7 +109,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.501Z",
+    "createdAt" : "2024-06-07T07:05:50.332Z",
     "locationId" : "9187dd87-8ac5-5509-a56e-0cce8dbb4216",
     "memberId" : "0b275924-0bbd-5871-ad3d-a609512dd50e",
     "refundAmount" : 30.78,
@@ -117,10 +117,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.501Z"
+    "updatedAt" : "2024-06-07T07:05:50.332Z"
   },
   {
-    "id" : "ff104be7-3691-4d54-b595-de353d751eca",
+    "id" : "344eab20-01ae-4737-a852-198665b61d85",
     "billingId" : "beee4f9e-a395-4731-a1b4-3d4d53186a64",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "923-100",
@@ -129,7 +129,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.612Z",
+    "createdAt" : "2024-06-07T07:05:50.455Z",
     "locationId" : "827376ac-1959-523c-be87-eb93694d115d",
     "memberId" : "886b14ff-b899-5dca-a34f-5b17db3d59b7",
     "refundAmount" : 95.5,
@@ -137,10 +137,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.612Z"
+    "updatedAt" : "2024-06-07T07:05:50.455Z"
   },
   {
-    "id" : "e67bb33c-8962-4fc5-b3bb-b4f5046cbcba",
+    "id" : "88c996ae-4b40-4ff6-86c4-666050ec305d",
     "billingId" : "b32c5c18-1218-42a4-8477-5b4ea265b9ff",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-428",
@@ -149,7 +149,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.717Z",
+    "createdAt" : "2024-06-07T07:05:50.582Z",
     "locationId" : "07f68751-bd11-5664-9767-8afff2489c97",
     "memberId" : "8ea09485-99de-4a49-99d3-4519785b211d",
     "refundAmount" : 51.8,
@@ -157,10 +157,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.717Z"
+    "updatedAt" : "2024-06-07T07:05:50.582Z"
   },
   {
-    "id" : "57ae7d51-b4ab-4e99-b531-3ebe18f11318",
+    "id" : "046eb6f7-7dcf-4bf4-921d-222f95bdeb9d",
     "billingId" : "3b396858-0b72-4e7b-b607-7723d9a32091",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "013-711",
@@ -169,7 +169,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.829Z",
+    "createdAt" : "2024-06-07T07:05:50.698Z",
     "locationId" : "827376ac-1959-523c-be87-eb93694d115d",
     "memberId" : "e895ebc2-c74e-45de-8d99-145c6657ede8",
     "refundAmount" : 81,
@@ -177,10 +177,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.829Z"
+    "updatedAt" : "2024-06-07T07:05:50.698Z"
   },
   {
-    "id" : "1bf54e82-021b-4e4c-8116-b9297d9c4425",
+    "id" : "af283582-84e7-4304-b69e-1c57bbce1b66",
     "billingId" : "5d66642f-909a-4aa4-bcff-97e39b3d6c9f",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-191",
@@ -189,7 +189,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:10.955Z",
+    "createdAt" : "2024-06-07T07:05:50.817Z",
     "locationId" : "6ba074d4-b8c4-5094-92f2-c709ad283df1",
     "memberId" : "eb378dfd-22c6-5ef4-a555-a29f2c7adac6",
     "refundAmount" : 33.9,
@@ -197,10 +197,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:10.955Z"
+    "updatedAt" : "2024-06-07T07:05:50.817Z"
   },
   {
-    "id" : "85221b55-00c6-447a-92cc-a427c8cdedf9",
+    "id" : "85a9d896-d68d-48b3-b88c-b7256bf74574",
     "billingId" : "20b0bba2-bfb6-42d7-ad13-0227275d8ab1",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-191",
@@ -209,7 +209,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.058Z",
+    "createdAt" : "2024-06-07T07:05:50.938Z",
     "locationId" : "6ba074d4-b8c4-5094-92f2-c709ad283df1",
     "memberId" : "dd0ee940-d74a-57bb-a642-2f24b9d95022",
     "refundAmount" : 33.9,
@@ -217,10 +217,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.058Z"
+    "updatedAt" : "2024-06-07T07:05:50.938Z"
   },
   {
-    "id" : "44aabdf9-0d7c-4586-ae1d-d016410a6e0a",
+    "id" : "af6a65bf-ad3f-42df-9ca5-3638bdb56725",
     "billingId" : "748422a3-6f50-4393-ac75-0ee50a22390e",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-191",
@@ -229,7 +229,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.167Z",
+    "createdAt" : "2024-06-07T07:05:51.054Z",
     "locationId" : "6ba074d4-b8c4-5094-92f2-c709ad283df1",
     "memberId" : "aa0afc40-5eaf-4bef-ade4-b1db433e0862",
     "refundAmount" : 33.9,
@@ -237,10 +237,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.167Z"
+    "updatedAt" : "2024-06-07T07:05:51.054Z"
   },
   {
-    "id" : "03c8037b-ca5e-49cd-b971-5e2d91476920",
+    "id" : "e82dc07a-9a92-40f0-aeec-1ac7aa9f112e",
     "billingId" : "415d7ce0-9136-4120-89d0-b678eb7d848a",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "012-083",
@@ -249,7 +249,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.273Z",
+    "createdAt" : "2024-06-07T07:05:51.173Z",
     "locationId" : "fb314670-7c13-5852-9366-37b06c352ff0",
     "memberId" : "e668fc1a-8b85-47c7-bf83-0a9947a26f08",
     "refundAmount" : 35.9,
@@ -257,10 +257,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_On pause from 16/5/24 to 25/7/24",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.273Z"
+    "updatedAt" : "2024-06-07T07:05:51.173Z"
   },
   {
-    "id" : "9180772d-d7ac-4e61-8d6e-160cda1c1565",
+    "id" : "85f6e8fe-4a2b-47ca-84bb-4fc64a3afddc",
     "billingId" : "a705c023-1768-4151-943e-9f65e729eefd",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "923-100",
@@ -269,7 +269,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.377Z",
+    "createdAt" : "2024-06-07T07:05:51.281Z",
     "locationId" : "7d538ea7-c02e-5b6b-9abb-abc9c4f2984d",
     "memberId" : "85a93904-ec58-5ff4-9da5-68b80594cea3",
     "refundAmount" : 31.9,
@@ -277,10 +277,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.377Z"
+    "updatedAt" : "2024-06-07T07:05:51.281Z"
   },
   {
-    "id" : "396f264e-af1e-448b-a821-3955f5a50e29",
+    "id" : "5d96adfc-354e-460c-b46f-f842ad2986f7",
     "billingId" : "404645f1-bc98-495d-b781-ef54ea8cb937",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-164",
@@ -289,7 +289,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.485Z",
+    "createdAt" : "2024-06-07T07:05:51.405Z",
     "locationId" : "827376ac-1959-523c-be87-eb93694d115d",
     "memberId" : "615ff871-3fe1-5187-86a7-a9f8eb0f93a8",
     "refundAmount" : 71.8,
@@ -297,10 +297,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Account on hold/suspended from 2/5-13/6, member was charged",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.485Z"
+    "updatedAt" : "2024-06-07T07:05:51.405Z"
   },
   {
-    "id" : "73d39306-8eae-4d89-a44d-2407c5e6ea2a",
+    "id" : "0041f5d9-7694-4dbc-b363-6c0e22c7d894",
     "billingId" : "b2210688-94a8-4b70-bb7c-1bdc176073a5",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "063-121",
@@ -309,7 +309,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.592Z",
+    "createdAt" : "2024-06-07T07:05:51.533Z",
     "locationId" : "e4eaf09a-79cc-52af-906c-62ec14d99479",
     "memberId" : "474cff44-e1e9-44a8-8de6-ace339ecda5f",
     "refundAmount" : 99,
@@ -317,10 +317,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.592Z"
+    "updatedAt" : "2024-06-07T07:05:51.533Z"
   },
   {
-    "id" : "cb427460-6987-4d35-a73c-d720e326c0f5",
+    "id" : "824e16d4-e352-4432-8fb0-18f8d774ab13",
     "billingId" : "f93fb93a-a5c2-4838-9cbc-81fd9f745865",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "733-034",
@@ -329,7 +329,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.695Z",
+    "createdAt" : "2024-06-07T07:05:51.653Z",
     "locationId" : "e4eaf09a-79cc-52af-906c-62ec14d99479",
     "memberId" : "53e0f79f-266a-5697-b7fa-ecd45fd57df4",
     "refundAmount" : 99,
@@ -337,10 +337,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.695Z"
+    "updatedAt" : "2024-06-07T07:05:51.653Z"
   },
   {
-    "id" : "1f24ed36-544c-4ba1-b7c3-6c7dbfcb5bb3",
+    "id" : "abab4008-3f28-48a2-b953-cdfde6fe8091",
     "billingId" : "9947403a-c4db-47fe-ba5a-5350aa10acfc",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "733-065",
@@ -349,7 +349,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.804Z",
+    "createdAt" : "2024-06-07T07:05:51.771Z",
     "locationId" : "e4eaf09a-79cc-52af-906c-62ec14d99479",
     "memberId" : "85edebb2-bf17-5ff8-a6f2-cceb1d076b27",
     "refundAmount" : 25.9,
@@ -357,10 +357,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.804Z"
+    "updatedAt" : "2024-06-07T07:05:51.771Z"
   },
   {
-    "id" : "788f6277-1e59-4a43-bd5a-e94de5bb6bd5",
+    "id" : "6e2ddbfd-2835-499a-88cf-e3e7a47741d0",
     "billingId" : "328f2c25-15d9-4979-99d5-3a0b5b2ca4f3",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "066-112",
@@ -369,7 +369,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:11.928Z",
+    "createdAt" : "2024-06-07T07:05:51.911Z",
     "locationId" : "8da0dd6f-ff04-58dc-b35f-c61edebbc8d7",
     "memberId" : "215680ec-819a-4c29-a825-79c13c9dc6b4",
     "refundAmount" : 29.9,
@@ -377,10 +377,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:11.928Z"
+    "updatedAt" : "2024-06-07T07:05:51.911Z"
   },
   {
-    "id" : "c5a2ff3e-f65e-4352-9f31-cf9408f1ef1a",
+    "id" : "da2e5f6f-c943-45ce-a0b5-9cb8b70cbd8a",
     "billingId" : "b17070b8-9262-4a10-8a09-987744498147",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "017-042",
@@ -389,7 +389,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.032Z",
+    "createdAt" : "2024-06-07T07:05:52.042Z",
     "locationId" : "783b51c2-8f72-5e4f-8772-d947d1b76b8c",
     "memberId" : "d30d72f0-4635-536a-8b40-f7a9dcab7cec",
     "refundAmount" : 21.9,
@@ -397,10 +397,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.032Z"
+    "updatedAt" : "2024-06-07T07:05:52.042Z"
   },
   {
-    "id" : "da2007c9-ed98-4423-9311-4c7af587c710",
+    "id" : "09a84751-6027-439c-990a-afd0c4af6ea8",
     "billingId" : "5d997152-42f9-45b6-ad4d-3a20cf3b0456",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-443",
@@ -409,7 +409,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.135Z",
+    "createdAt" : "2024-06-07T07:05:52.149Z",
     "locationId" : "703f9093-7e51-47c3-be4d-e1ffa410fbff",
     "memberId" : "f4091bdd-ea40-4e6a-b846-dea1fabf393e",
     "refundAmount" : 33.9,
@@ -417,10 +417,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Cancelled membership not transferred to HUB, still being charged",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.135Z"
+    "updatedAt" : "2024-06-07T07:05:52.149Z"
   },
   {
-    "id" : "829d1828-51b1-4463-aa5d-7992af0a5e3d",
+    "id" : "7d6af108-8578-44be-bce9-90cb80c55323",
     "billingId" : "b3ec8221-dfd8-436b-a983-ef53714f2932",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "923-100",
@@ -429,7 +429,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.242Z",
+    "createdAt" : "2024-06-07T07:05:52.267Z",
     "locationId" : "e4eaf09a-79cc-52af-906c-62ec14d99479",
     "memberId" : "7abd3af2-83c7-5736-8a5f-c6bc65437f40",
     "refundAmount" : 69,
@@ -437,10 +437,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Access card fee",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.242Z"
+    "updatedAt" : "2024-06-07T07:05:52.267Z"
   },
   {
-    "id" : "12adb990-c44e-4656-b6e7-9e96a9a043f6",
+    "id" : "6abb3e3e-0a71-477e-8417-e0dc65699ca0",
     "billingId" : "71681fda-cf58-4c5c-af7b-857bf8340c58",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "732-270",
@@ -449,7 +449,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.346Z",
+    "createdAt" : "2024-06-07T07:05:52.375Z",
     "locationId" : "703f9093-7e51-47c3-be4d-e1ffa410fbff",
     "memberId" : "f01e91db-b41d-51fa-a415-b06b4c7a0c72",
     "refundAmount" : 31.48,
@@ -457,10 +457,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Cancelled membership not transferred to HUB, still being charged",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.346Z"
+    "updatedAt" : "2024-06-07T07:05:52.375Z"
   },
   {
-    "id" : "61a5c1b8-4fe9-486b-8443-db70f3503bd7",
+    "id" : "70e547f0-8805-4ec4-aeae-6b6297f09d2a",
     "billingId" : "eb1c7611-050e-4e6d-8c86-2c65fbfa426f",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "704-865",
@@ -469,7 +469,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.446Z",
+    "createdAt" : "2024-06-07T07:05:52.489Z",
     "locationId" : "827376ac-1959-523c-be87-eb93694d115d",
     "memberId" : "723b1887-918f-5a26-ab11-7ada3c4ab13b",
     "refundAmount" : 35.9,
@@ -477,10 +477,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD (HUB & PS)",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.446Z"
+    "updatedAt" : "2024-06-07T07:05:52.489Z"
   },
   {
-    "id" : "9280319d-f59a-411f-9d32-f578ef67aecb",
+    "id" : "69bf1549-30a8-45d4-82fe-1d1dad5f5838",
     "billingId" : "c88a7eb4-4d0e-4cbc-9681-89a268e6e086",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "124-899",
@@ -489,7 +489,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.552Z",
+    "createdAt" : "2024-06-07T07:05:52.598Z",
     "locationId" : "703f9093-7e51-47c3-be4d-e1ffa410fbff",
     "memberId" : "a95d43ef-8b36-583d-9b14-615a4708d8f5",
     "refundAmount" : 67.8,
@@ -497,10 +497,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Double DD after cancelling membership",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.552Z"
+    "updatedAt" : "2024-06-07T07:05:52.598Z"
   },
   {
-    "id" : "35d288aa-2650-44ab-abb3-610493e619dc",
+    "id" : "5fba2226-83ae-47ff-b112-5bfa4b739086",
     "billingId" : "9216d0b1-0cda-4b39-ab14-5abe50c74adf",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "062-799",
@@ -509,7 +509,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.658Z",
+    "createdAt" : "2024-06-07T07:05:52.712Z",
     "locationId" : "b7cf4971-c2a9-5dee-8390-e00dc2b2cb4e",
     "memberId" : "66d4a245-d014-43cf-bca9-04b3dd710384",
     "refundAmount" : 79.8,
@@ -517,10 +517,10 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.658Z"
+    "updatedAt" : "2024-06-07T07:05:52.712Z"
   },
   {
-    "id" : "b3ceb749-a410-4c11-9393-5997bbc09354",
+    "id" : "864941c3-f633-44ad-9f1d-b1f91aab0e44",
     "billingId" : "6b45a2bf-fac8-4212-9f75-4c3ed66f6403",
     "brandId" : "6dec4e5f-7a07-4a7e-a809-2c0c1df01366",
     "bsb" : "063-254",
@@ -529,7 +529,7 @@
     "refundStatus" : "SUCCESS",
     "requestBy" : "6b303448-4010-4ab8-a3dc-30bbd4145475",
     "paymentType" : "DIRECT_DEBIT",
-    "createdAt" : "2024-06-07T06:10:12.766Z",
+    "createdAt" : "2024-06-07T07:05:52.826Z",
     "locationId" : "e4eaf09a-79cc-52af-906c-62ec14d99479",
     "memberId" : "67ec9494-a832-456e-917b-7b1b45f628dd",
     "refundAmount" : 99,
@@ -537,6 +537,6 @@
     "refundDate" : "2024-05-30",
     "refundReason" : "MANUAL_Charged joining fee",
     "refundType" : "BILLING",
-    "updatedAt" : "2024-06-07T06:10:12.766Z"
+    "updatedAt" : "2024-06-07T07:05:52.826Z"
   }
 ]

@@ -13,8 +13,6 @@ import io.circe.generic.auto.*
 import io.circe.parser
 import io.circe.syntax.*
 import natchez.Trace.Implicits.noop
-import pureconfig.ConfigSource
-import pureconfig.error.ConfigReaderFailures
 import skunk.*
 
 import java.nio.file.{Files, Paths}
@@ -98,12 +96,10 @@ object RefundApp extends IOApp:
     }
 
   def run(args: List[String]): IO[ExitCode] =
-    val config: Either[ConfigReaderFailures, DbConfig] = ConfigSource.default.at("db.prod").load[DbConfig]
-    config match
-      case Left(configFailure: ConfigReaderFailures) =>
-        IO(println(configFailure.prettyPrint(2))).as(ExitCode.Error)
-      case Right(config) =>
-        doProcessRefund(config)
+    DbConfig.load.fold(
+      configFailure => IO(println(configFailure.prettyPrint(2))).as(ExitCode.Error),
+      config => doProcessRefund(config)
+    )
 
   private def doProcessRefund(dbConfig: DbConfig): IO[ExitCode] =
     DbConnection.pooled[IO](dbConfig).use { resource =>
