@@ -12,8 +12,8 @@ object DbConnection:
     Session.single(
       host = config.host,
       port = config.port,
-      user = config.user,
-      database = config.database,
+      user = config.username,
+      database = config.dbname,
       password = Some(config.password)
     )
 
@@ -21,8 +21,8 @@ object DbConnection:
     Session.pooled(
       host = config.host,
       port = config.port,
-      user = config.user,
-      database = config.database,
+      user = config.username,
+      database = config.dbname,
       password = Some(config.password),
       max = 10
     )

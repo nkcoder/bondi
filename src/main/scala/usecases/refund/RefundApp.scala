@@ -97,7 +97,7 @@ object RefundApp extends IOApp:
 
   def run(args: List[String]): IO[ExitCode] =
     DbConfig.load.fold(
-      configFailure => IO(println(configFailure.prettyPrint(2))).as(ExitCode.Error),
+      error => IO(println(error)).as(ExitCode.Error),
       config => doProcessRefund(config)
     )
 
