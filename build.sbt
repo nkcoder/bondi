@@ -11,7 +11,7 @@ val slf4jVersion      = "2.0.13"
 
 lazy val root = (project in file("."))
   .settings(
-    name             := "rds_helper_scala",
+    name             := "bondi",
     idePackagePrefix := Some("io.daniel"),
     libraryDependencies ++= Seq(
       "org.scalatest"         %% "scalatest"       % scalaTestVersion % Test,

@@ -7,6 +7,12 @@ A playground project using:
 - [PureConfig](https://github.com/pureconfig/pureconfig): a Scala library for loading configuration files.
 - [PostgreSQL](https://www.postgresql.org/): a powerful, open source object-relational database system.
 
+## Setup
+
+```shell
+docker compose  up
+```
+
 ## References
 
 - [The Skunk Scala Library for Database Interaction: A Comprehensive Guide](https://blog.rockthejvm.com/skunk-complete-guide/#8-sql-interpolation-query-and-command)

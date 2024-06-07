@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  db:
+    restart: always
+    image: postgres:16.1-alpine
+    container_name: hub_insights_db_container
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=hub-insights-local
+      - POSTGRES_PASSWORD=hub-insights-pass01
+      - POSTGRES_DB=hub-insights
+      - POSTGRES_PORT=5432
+    volumes:
+      #      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
