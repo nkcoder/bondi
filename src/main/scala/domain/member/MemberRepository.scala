@@ -21,7 +21,7 @@ final class MemberRepository[F[_]: Sync](session: Session[F]) extends Repository
     for {
       cmd <- session.prepare(insert)
       memberId = UUID.randomUUID().toString
-      _ <- cmd.execute(Member(memberId, mobileNumber, email, outstandingBalance, ddFailureCount))
+      _ <- cmd.execute(Member(memberId, mobileNumber, email, Option(outstandingBalance), Option(ddFailureCount)))
     } yield memberId
 
   def findAll: Stream[F, Member] =
@@ -35,6 +35,9 @@ final class MemberRepository[F[_]: Sync](session: Session[F]) extends Repository
 
   def delete(id: String): F[Unit] =
     update(_delete, id)
+
+  def findByEmail(email: String): F[Option[Member]] =
+    findOneBy(selectByEmail, email)
 
 }
 
@@ -55,6 +58,13 @@ object MemberRepository {
          WHERE id = $varchar
        """.query(memberCodec)
 
+  private val selectByEmail: Query[String, Member] =
+    sql"""
+         SELECT id, mobile_number, email, outstanding_balance, dd_failure_count
+         FROM member
+         WHERE email = $varchar
+       """.query(memberCodec)
+
   private val insert: Command[Member] =
     sql"""
          INSERT INTO member (id, mobile_number, email, outstanding_balance, dd_failure_count)
@@ -66,8 +76,8 @@ object MemberRepository {
          UPDATE member
          SET mobile_number = $varchar, email = $varchar, outstanding_balance = $numeric, dd_failure_count = $int4
          WHERE id = $varchar
-       """.command.contramap { member =>
-      (member.mobileNumber, member.email, member.outstandingBalance, member.ddFailureCount, member.id)
+       """.command.contramap { (member: Member) =>
+      (member.mobileNumber, member.email, member.outstandingBalance.getOrElse(BigDecimal(0)), member.ddFailureCount.getOrElse(0), member.id)
     }
 
   private val _delete: Command[String] =

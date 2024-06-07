@@ -62,7 +62,7 @@ object Main extends IOApp {
             users_1    <- memberRepo.findAll.compile.toList
             _          <- IO(println(s"Users found: $users_1"))
             _          <- IO(println("Update John's email to: email@email.com" + "_" * 50))
-            _          <- memberRepo.update(Member(johnId, "John-2", "email@email.com", 0.6, 2))
+            _          <- memberRepo.update(Member(johnId, "John-2", "email@email.com", Some(0.6), Some(2)))
             _          <- IO(println("Fetching all users" + "_" * 50))
             users_2    <- memberRepo.findAll.compile.toList
             _          <- IO(println(s"Users found: $users_2"))

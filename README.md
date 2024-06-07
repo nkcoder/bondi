@@ -5,6 +5,7 @@ A playground project using:
 - [Scala 3](https://scala-lang.org/)
 - [Skunk](https://github.com/typelevel/skunk): a functional PostgreSQL client for Scala.
 - [PureConfig](https://github.com/pureconfig/pureconfig): a Scala library for loading configuration files.
+- [PostgreSQL](https://www.postgresql.org/): a powerful, open source object-relational database system.
 
 ## References
 
