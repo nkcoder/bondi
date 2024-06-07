@@ -4,18 +4,18 @@ services:
   db:
     restart: always
     image: postgres:16.1-alpine
-    container_name: hub_insights_db_container
+    container_name: bondi_db_container
     ports:
-      - "5432:5432"
+      - "54321:5432"
     environment:
-      - POSTGRES_USER=hub-insights-local
-      - POSTGRES_PASSWORD=hub-insights-pass01
-      - POSTGRES_DB=hub-insights
-      - POSTGRES_PORT=5432
+      - POSTGRES_USER=bondi_local
+      - POSTGRES_PASSWORD=bondi_pass01
+      - POSTGRES_DB=bondi
+      - POSTGRES_PORT=54321
     volumes:
-      #      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - db:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - bondi_db:/var/lib/postgresql/data
 
 volumes:
-  db:
+  bondi_db:
     driver: local

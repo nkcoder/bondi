@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+docker compose up -d
+APP_TO_RUN=${1:-"io.daniel.Main"}
+echo "Running $APP_TO_RUN"
+APP_ENV=local sbt "runMain  $APP_TO_RUN"

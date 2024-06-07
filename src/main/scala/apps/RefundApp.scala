@@ -1,5 +1,5 @@
 package io.daniel
-package usecases.refund
+package apps
 
 import db.{DbConfig, DbConnection}
 import domain.billing.BillingRepository

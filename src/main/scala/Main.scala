@@ -5,8 +5,6 @@ import domain.member.{Member, MemberRepository}
 
 import cats.effect.{ExitCode, IO, IOApp}
 import natchez.Trace.Implicits.noop
-import pureconfig.ConfigSource
-import pureconfig.error.ConfigReaderFailures
 import skunk.*
 import skunk.codec.all.*
 import skunk.syntax.all.*
@@ -34,13 +32,12 @@ object Main extends IOApp {
     }
 
   override def run(args: List[String]): IO[ExitCode] =
-    val config: Either[ConfigReaderFailures, DbConfig] = ConfigSource.default.at("db.local").load[DbConfig]
-    config match
-      case Left(configFailure: ConfigReaderFailures) =>
-        IO(println(configFailure.prettyPrint(2))).as(ExitCode.Error)
-      case Right(dbConfig: DbConfig) =>
-//        runSessions(dbConfig)
-        runOnMember(dbConfig)
+    DbConfig.load.fold(
+      error => IO(println(error.toString)).as(ExitCode.Error),
+      config =>
+//        runSessions(config)
+        runOnMember(config)
+    )
 
   private def runSessions(dbConfig: DbConfig): IO[ExitCode] =
     singleSession(dbConfig) *> pooledSession(dbConfig) *> IO.pure(ExitCode.Success)

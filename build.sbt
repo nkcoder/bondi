@@ -2,6 +2,10 @@ ThisBuild / version := "0.1.0"
 
 ThisBuild / scalaVersion := "3.3.3"
 
+// specify the main class to run
+//Compile / mainClass := Some("io.daniel.Main")
+//Compile / mainClass := Some("io.daniel.apps.RefundApp")
+
 val circeVersion      = "0.14.7"
 val skunkVersion      = "0.6.4"
 val pureConfigVersion = "0.17.6"

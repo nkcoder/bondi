@@ -9,9 +9,31 @@ A playground project using:
 
 ## Setup
 
+Start the PostgreSQL database using Docker:
+
 ```shell
 docker compose  up
 ```
+
+Run the application:
+
+```shell
+auto/local io.daniel.Main
+auto/dev io.daniel.apps.RefundApp
+auto/prod io.daniel.apps.RefundApp
+```
+
+How to specify the application to run:
+
+- Setting the mainClass in build.sbt
+    ```sbt
+    Compile / mainClass := Some("io.daniel.Main")
+    Compile / mainClass := Some("io.daniel.apps.RefundApp")
+    ```
+- Using the `run` task with the `--main` option
+    ```shell
+    sbt "runRun io.daniel.Main"
+    ```
 
 ## References
 
