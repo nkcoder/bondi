@@ -18,6 +18,7 @@ import skunk.*
 import java.nio.file.{Files, Paths}
 import java.util.UUID
 import scala.io.Source
+import scala.util.Properties
 
 final case class InputItem(
     name: String,
@@ -96,10 +97,13 @@ object RefundApp extends IOApp:
     }
 
   def run(args: List[String]): IO[ExitCode] =
-    DbConfig.load.fold(
-      error => IO(println(error)).as(ExitCode.Error),
-      config => doProcessRefund(config)
-    )
+    val env = Properties.envOrElse("APP_ENV", "local")
+    DbConfig
+      .load(env)
+      .fold(
+        error => IO(println(error)).as(ExitCode.Error),
+        config => doProcessRefund(config)
+      )
 
   private def doProcessRefund(dbConfig: DbConfig): IO[ExitCode] =
     DbConnection.pooled[IO](dbConfig).use { resource =>

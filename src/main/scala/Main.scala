@@ -9,6 +9,8 @@ import skunk.*
 import skunk.codec.all.*
 import skunk.syntax.all.*
 
+import scala.util.Properties
+
 object Main extends IOApp {
   // local testing
   private def singleSession(config: DbConfig): IO[Unit] =
@@ -32,7 +34,8 @@ object Main extends IOApp {
     }
 
   override def run(args: List[String]): IO[ExitCode] =
-    DbConfig.load.fold(
+    val env = Properties.envOrElse("APP_ENV", "local")
+    DbConfig.load(env).fold(
       error => IO(println(error.toString)).as(ExitCode.Error),
       config =>
 //        runSessions(config)

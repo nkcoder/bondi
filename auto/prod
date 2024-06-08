@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-APP_TO_RUN=${1:-"io.daniel.Main"}
+APP_TO_RUN=${1:-"io.daniel.apps.RefundApp"}
 APP_ENV=prod sbt "runMain $APP_TO_RUN"

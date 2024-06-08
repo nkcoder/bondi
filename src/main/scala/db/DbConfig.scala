@@ -7,8 +7,6 @@ import pureconfig.error.ConfigReaderFailures
 import pureconfig.generic.derivation.default.*
 import pureconfig.{ConfigReader, ConfigSource}
 
-import scala.util.Properties
-
 case class DbConfig(
     host: String,
     port: Int,
@@ -18,10 +16,7 @@ case class DbConfig(
 ) derives ConfigReader
 
 object DbConfig:
-
-  private val env = Properties.envOrElse("APP_ENV", "local")
-
-  def load: Either[Error, DbConfig] =
+  def load(env: String): Either[Error, DbConfig] =
     env match
       case "local" =>
         ConfigSource.default.at("db.local").load[DbConfig].left.map(f => Error(f.toList.mkString(",")))
