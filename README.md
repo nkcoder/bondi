@@ -39,8 +39,13 @@ How to specify the application to run:
 
 ### Secrets Manager can't find the specified secret.
 
-> Secrets Manager can't find the specified secret. (Service: SecretsManager, Status Code: 400, Request ID: aab88d0e-ca3b-461a-8a6f-21371846fc63)
+> Secrets Manager can't find the specified secret. (Service: SecretsManager, Status Code: 400, Request ID:
+> aab88d0e-ca3b-461a-8a6f-21371846fc63)
 
+**Options**:
+
+- Option 1: add environment variable `AWS_PROFILE=prod` to Intellij Idea Run/Debug configuration.
+- Option 2: run on the command line: `AWS_PROFILE=prod auto/prod io.daniel.apps.ClubTransfer`
 
 ## References
 

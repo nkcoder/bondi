@@ -18,7 +18,7 @@ object Test extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     for {
-      _ <- EmailService.send(
+      _ <- EmailService.sendEmailWithAttachment(
         sender = "noreply@plus.fitness",
         recipient = "daniel.guo@vivalabs.com.au",
         subject = "Test",

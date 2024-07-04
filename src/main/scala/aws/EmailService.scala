@@ -18,7 +18,13 @@ import javax.mail.util.ByteArrayDataSource
 
 object EmailService {
 
-  def send(sender: String, recipient: String, subject: String, body: String, fileName: String): IO[Unit] = IO {
+  def sendEmailWithAttachment(
+      sender: String,
+      recipient: String,
+      subject: String,
+      body: String,
+      fileName: String
+  ): IO[Unit] = IO {
 
     val fileContent = Files.readAllBytes(Paths.get(fileName))
 
@@ -66,6 +72,8 @@ object EmailService {
     val client = SesClient.builder.region(region).build
 
     client.sendRawEmail(request)
+
+    println(s"Email sent to: $recipient, fileName: $fileName")
   }
 
 }

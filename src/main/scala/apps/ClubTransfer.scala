@@ -47,16 +47,16 @@ case class ClubTransferData(
 
 object ClubTransfer extends IOApp {
 
-  val sender  = "noreply@plus.fitness"
-  val subject = "Club Transfer for PIF Members"
-  val testTo  = "daniel.guo@vivalabs.com.au"
+  val sender   = "noreply@the-hub.ai"
+  val subject  = "Club Transfer for PIF Members"
+  val toDaniel = "daniel.guo@vivalabs.com.au"
   val body =
     """
       |<html>
       |<head></head>
       |<body><p>Hello,</p>
-      |<p>Please find attached the club transfer data for your club.</p>
-      |<p>Regards,</p>
+      |<p>Please find attached the PIF club transfer data for your club.</p>
+      |<p>Regards</p>
       |</html>
       |""".stripMargin
 
@@ -108,7 +108,7 @@ object ClubTransfer extends IOApp {
 
   private def writeToCsvFile(data: Map[String, List[ClubTransferData]]): IO[Unit] = IO {
     data.foreach { case (club, transfers) =>
-      val writer = CSVWriter.open(s"club_transfer_$club.csv")
+      val writer = CSVWriter.open(s"pif_club_transfer_$club.csv")
       writer.writeRow(
         List(
           "Member ID",
@@ -145,25 +145,26 @@ object ClubTransfer extends IOApp {
 
   private def sendEmailToClub(clubs: List[String], session: Session[IO]): IO[Unit] = {
     for {
-      _                  <- IO.println(s"processing: ${clubs.length} clubs")
+      _                  <- IO.println(s"Total: ${clubs.length} clubs")
       locationRepository <- LocationRepository.make(session)
       _ <- clubs.traverse_ { clubName =>
         for {
-          _             <- IO.println(s"processing club: $clubName")
+          _             <- IO.println(s"Processing club: $clubName")
           maybeLocation <- locationRepository.findByName(clubName)
           _ <- maybeLocation match {
             case Some(location) if location.email.isDefined =>
-              val email    = location.email.get
-              val fileName = s"club_transfer_$clubName.csv"
+              val email = location.email.get
+              println(s"Location email: $email")
+              val fileName = s"pif_club_transfer_$clubName.csv"
+              IO.println(s"Sending email to: $email, fileName: $fileName")
 //              EmailService.send(sender, email, subject, body, fileName)
-              if (location.name.equals("ALEXANDRIA")) {
-                Emails.send(sender, testTo, subject, body, fileName)
-              }
+              EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, fileName)
             case None =>
               IO.println(s"Location not found for club: $clubName")
             case _ =>
-              IO.println(s"Email not found for club: $clubName")
+              IO.println(s"--- Email not found for club: $clubName")
           }
+          _ <- IO.println(s"Process club: $clubName completed")
         } yield ()
       }
     } yield ()
@@ -178,14 +179,12 @@ object ClubTransfer extends IOApp {
         config => {
           DbConnection.pooled[IO](config).use { resource =>
             resource.use { session =>
-              {
-                for {
-                  locationRepository <- LocationRepository.make(session)
-                  data               <- readClubTransferData()
-                  _                  <- writeToCsvFile(data)
-                  _                  <- sendEmailToClub(data.keys.toList, session)
-                } yield ExitCode.Success
-              }
+              for {
+                locationRepository <- LocationRepository.make(session)
+                data               <- readClubTransferData()
+                _                  <- writeToCsvFile(data)
+                _                  <- sendEmailToClub(data.keys.toList, session)
+              } yield ExitCode.Success
             }
           }
         }
