@@ -35,6 +35,13 @@ How to specify the application to run:
     sbt "runRun io.daniel.Main"
     ```
 
+## Trouble Shooting
+
+### Secrets Manager can't find the specified secret.
+
+> Secrets Manager can't find the specified secret. (Service: SecretsManager, Status Code: 400, Request ID: aab88d0e-ca3b-461a-8a6f-21371846fc63)
+
+
 ## References
 
 - [The Skunk Scala Library for Database Interaction: A Comprehensive Guide](https://blog.rockthejvm.com/skunk-complete-guide/#8-sql-interpolation-query-and-command)

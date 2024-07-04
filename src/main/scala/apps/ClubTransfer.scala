@@ -1,10 +1,15 @@
 package io.daniel
 package apps
 
-import db.DbConfig
+import aws.EmailService
+import db.{DbConfig, DbConnection}
+import domain.location.LocationRepository
 
 import cats.effect.{ExitCode, IO, IOApp}
+import cats.syntax.all.*
 import com.github.tototoshi.csv.{CSVReader, CSVWriter}
+import natchez.Trace.Implicits.noop
+import skunk.Session
 
 import java.time.LocalDate
 import scala.collection.mutable
@@ -41,6 +46,19 @@ case class ClubTransferData(
 )
 
 object ClubTransfer extends IOApp {
+
+  val sender  = "noreply@plus.fitness"
+  val subject = "Club Transfer for PIF Members"
+  val testTo  = "daniel.guo@vivalabs.com.au"
+  val body =
+    """
+      |<html>
+      |<head></head>
+      |<body><p>Hello,</p>
+      |<p>Please find attached the club transfer data for your club.</p>
+      |<p>Regards,</p>
+      |</html>
+      |""".stripMargin
 
   private def readClubTransferData(): IO[Map[String, List[ClubTransferData]]] = IO {
     val clubTransferInputData = CSVReader.open("pif_club_transfer.csv").allWithHeaders()
@@ -90,7 +108,6 @@ object ClubTransfer extends IOApp {
 
   private def writeToCsvFile(data: Map[String, List[ClubTransferData]]): IO[Unit] = IO {
     data.foreach { case (club, transfers) =>
-      println(s"club: $club, transfers: $transfers")
       val writer = CSVWriter.open(s"club_transfer_$club.csv")
       writer.writeRow(
         List(
@@ -121,8 +138,35 @@ object ClubTransfer extends IOApp {
           )
         )
       }
+
       writer.close()
     }
+  }
+
+  private def sendEmailToClub(clubs: List[String], session: Session[IO]): IO[Unit] = {
+    for {
+      _                  <- IO.println(s"processing: ${clubs.length} clubs")
+      locationRepository <- LocationRepository.make(session)
+      _ <- clubs.traverse_ { clubName =>
+        for {
+          _             <- IO.println(s"processing club: $clubName")
+          maybeLocation <- locationRepository.findByName(clubName)
+          _ <- maybeLocation match {
+            case Some(location) if location.email.isDefined =>
+              val email    = location.email.get
+              val fileName = s"club_transfer_$clubName.csv"
+//              EmailService.send(sender, email, subject, body, fileName)
+              if (location.name.equals("ALEXANDRIA")) {
+                Emails.send(sender, testTo, subject, body, fileName)
+              }
+            case None =>
+              IO.println(s"Location not found for club: $clubName")
+            case _ =>
+              IO.println(s"Email not found for club: $clubName")
+          }
+        } yield ()
+      }
+    } yield ()
   }
 
   override def run(args: List[String]): IO[ExitCode] = {
@@ -132,13 +176,19 @@ object ClubTransfer extends IOApp {
       .fold(
         error => IO(println(error)).as(ExitCode.Error),
         config => {
-          for {
-            data <- readClubTransferData()
-            _    <- IO(println(data))
-            _    <- writeToCsvFile(data)
-          } yield ExitCode.Success
+          DbConnection.pooled[IO](config).use { resource =>
+            resource.use { session =>
+              {
+                for {
+                  locationRepository <- LocationRepository.make(session)
+                  data               <- readClubTransferData()
+                  _                  <- writeToCsvFile(data)
+                  _                  <- sendEmailToClub(data.keys.toList, session)
+                } yield ExitCode.Success
+              }
+            }
+          }
         }
       )
   }
-
 }

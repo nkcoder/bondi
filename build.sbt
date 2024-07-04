@@ -30,8 +30,12 @@ lazy val root = (project in file("."))
       "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
       "software.amazon.awssdk" % "sqs"             % awsSdkVersion,
       "software.amazon.awssdk" % "sns"             % awsSdkVersion,
+      "software.amazon.awssdk" % "ses"             % awsSdkVersion,
       "org.slf4j"              % "slf4j-api"       % slf4jVersion,
       "org.slf4j"              % "slf4j-nop"       % slf4jVersion,
-      "com.github.tototoshi"  %% "scala-csv"       % scalaCsvVersion
+      "com.github.tototoshi"  %% "scala-csv"       % scalaCsvVersion,
+      "javax.mail"             % "javax.mail-api"  % "1.6.2",
+      "com.sun.mail"           % "javax.mail"      % "1.6.2",
+      "javax.activation"       % "activation"      % "1.1.1"
     )
   )
