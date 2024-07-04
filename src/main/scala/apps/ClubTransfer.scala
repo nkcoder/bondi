@@ -26,11 +26,8 @@ case class ClubTransferRow(
     fobNumber: String,
     firstName: String,
     surname: String,
-    membershipType: String,
     homeClub: String,
-    targetClub: String,
-    visitCount: Int,
-    totalVisits: Int
+    targetClub: String
 )
 
 case class ClubTransferData(
@@ -38,7 +35,6 @@ case class ClubTransferData(
     fobNumber: String,
     firstName: String,
     surname: String,
-    membershipType: String,
     homeClub: String,
     targetClub: String,
     transferType: String,
@@ -47,32 +43,29 @@ case class ClubTransferData(
 
 object ClubTransfer extends IOApp {
 
-  val sender   = "noreply@the-hub.ai"
-  val subject  = "Club Transfer for PIF Members"
-  val toDaniel = "daniel.guo@vivalabs.com.au"
+  val sender           = "noreply@the-hub.ai"
+  val subject          = "Club Transfer for Direct Debit Members"
+  private val toDaniel = "daniel.guo@vivalabs.com.au"
   val body =
     """
       |<html>
       |<head></head>
       |<body><p>Hello,</p>
-      |<p>Please find attached the PIF club transfer data for your club.</p>
+      |<p>Please find attached the Direct Debit club transfer data for your club (April - June 2024).</p>
       |<p>Regards</p>
       |</html>
       |""".stripMargin
 
-  private def readClubTransferData(): IO[Map[String, List[ClubTransferData]]] = IO {
-    val clubTransferInputData = CSVReader.open("pif_club_transfer.csv").allWithHeaders()
+  def readClubTransferData(): IO[Map[String, List[ClubTransferData]]] = IO {
+    val clubTransferInputData = CSVReader.open("dd_club_transfer.csv").allWithHeaders()
     val clubTransferRows = clubTransferInputData.map { row =>
       ClubTransferRow(
         row("memberId"),
         row("fobNumber"),
         row("firstName"),
         row("surname"),
-        row("membershipType"),
-        row("homeClub"),
-        row("targetClub"),
-        row("visitCount").toInt,
-        row("totalVisits").toInt
+        row("homeClub").toUpperCase,
+        row("targetClub").toUpperCase
       )
     }
 
@@ -84,7 +77,6 @@ object ClubTransfer extends IOApp {
         row.fobNumber,
         row.firstName,
         row.surname,
-        row.membershipType,
         row.homeClub,
         row.targetClub,
         "TRANSFER IN",
@@ -106,16 +98,47 @@ object ClubTransfer extends IOApp {
     result.toMap
   }
 
+  def readClubTransferDataImmutable(): IO[Map[String, List[ClubTransferData]]] = IO {
+    val clubTransferInputData = CSVReader.open("dd_club_transfer.csv").allWithHeaders()
+    val clubTransferRows = clubTransferInputData.map { row =>
+      ClubTransferRow(
+        row("memberId"),
+        row("fobNumber"),
+        row("firstName"),
+        row("surname"),
+        row("homeClub").toUpperCase,
+        row("targetClub").toUpperCase
+      )
+    }
+
+    val transfers = clubTransferRows.flatMap { row =>
+      val transferIn = ClubTransferData(
+        row.memberId,
+        row.fobNumber,
+        row.firstName,
+        row.surname,
+        row.homeClub,
+        row.targetClub,
+        "TRANSFER IN",
+        LocalDate.now()
+      )
+
+      val transferOut = transferIn.copy(transferType = "TRANSFER OUT")
+      List(row.targetClub -> transferIn, row.homeClub -> transferOut)
+    }
+
+    transfers.groupMap(_._1)(_._2)
+  }
+
   private def writeToCsvFile(data: Map[String, List[ClubTransferData]]): IO[Unit] = IO {
     data.foreach { case (club, transfers) =>
-      val writer = CSVWriter.open(s"pif_club_transfer_$club.csv")
+      val writer = CSVWriter.open(s"dd_club_transfer_$club.csv")
       writer.writeRow(
         List(
           "Member ID",
           "FOB Number",
           "First Name",
           "Surname",
-          "Membership Type",
           "Home Club",
           "Target Club",
           "Transfer Type",
@@ -130,7 +153,6 @@ object ClubTransfer extends IOApp {
             fobNumber,
             firstName,
             surname,
-            membershipType,
             homeClub,
             targetClub,
             transferType,
@@ -152,11 +174,10 @@ object ClubTransfer extends IOApp {
           _             <- IO.println(s"Processing club: $clubName")
           maybeLocation <- locationRepository.findByName(clubName)
           _ <- maybeLocation match {
-            case Some(location) if location.email.isDefined =>
+            case Some(location) if location.email.isDefined && clubName.equals("WILEY PARK") =>
               val email = location.email.get
               println(s"Location email: $email")
-              val fileName = s"pif_club_transfer_$clubName.csv"
-              IO.println(s"Sending email to: $email, fileName: $fileName")
+              val fileName = s"dd_club_transfer_$clubName.csv"
 //              EmailService.send(sender, email, subject, body, fileName)
               EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, fileName)
             case None =>
@@ -181,7 +202,7 @@ object ClubTransfer extends IOApp {
             resource.use { session =>
               for {
                 locationRepository <- LocationRepository.make(session)
-                data               <- readClubTransferData()
+                data               <- readClubTransferDataImmutable()
                 _                  <- writeToCsvFile(data)
                 _                  <- sendEmailToClub(data.keys.toList, session)
               } yield ExitCode.Success

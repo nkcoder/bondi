@@ -18,6 +18,23 @@ import javax.mail.util.ByteArrayDataSource
 
 object EmailService {
 
+  /** Using AWS Java SDK v2 to send an email with an attachment.
+    *
+    * @see
+    *   <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/java_ses_code_examples.html">Amazon SES Java SDK v2 examples</a>
+    *
+    * @param sender
+    *   sender
+    * @param recipient
+    *   recipient
+    * @param subject
+    *   subject
+    * @param body
+    *   body
+    * @param fileName
+    *   attachment file name
+    * @return
+    */
   def sendEmailWithAttachment(
       sender: String,
       recipient: String,
