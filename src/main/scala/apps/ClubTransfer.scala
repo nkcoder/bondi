@@ -174,11 +174,11 @@ object ClubTransfer extends IOApp {
           _             <- IO.println(s"Processing club: $clubName")
           maybeLocation <- locationRepository.findByName(clubName)
           _ <- maybeLocation match {
-            case Some(location) if location.email.isDefined && clubName.equals("WILEY PARK") =>
+            case Some(location) if location.email.isDefined =>
               val email = location.email.get
               println(s"Location email: $email")
               val fileName = s"dd_club_transfer_$clubName.csv"
-//              EmailService.send(sender, email, subject, body, fileName)
+//              EmailService.sendEmailWithAttachment(sender, email, subject, body, fileName)
               EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, fileName)
             case None =>
               IO.println(s"Location not found for club: $clubName")
@@ -186,6 +186,7 @@ object ClubTransfer extends IOApp {
               IO.println(s"--- Email not found for club: $clubName")
           }
           _ <- IO.println(s"Process club: $clubName completed")
+          _ <- IO.sleep(1.second)
         } yield ()
       }
     } yield ()
