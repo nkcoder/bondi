@@ -13,6 +13,7 @@ import skunk.Session
 
 import java.time.LocalDate
 import scala.collection.mutable
+import scala.concurrent.duration.DurationInt
 import scala.util.Properties
 
 /** Use the scala-csv library.
@@ -56,49 +57,7 @@ object ClubTransfer extends IOApp {
       |</html>
       |""".stripMargin
 
-  def readClubTransferData(): IO[Map[String, List[ClubTransferData]]] = IO {
-    val clubTransferInputData = CSVReader.open("dd_club_transfer.csv").allWithHeaders()
-    val clubTransferRows = clubTransferInputData.map { row =>
-      ClubTransferRow(
-        row("memberId"),
-        row("fobNumber"),
-        row("firstName"),
-        row("surname"),
-        row("homeClub").toUpperCase,
-        row("targetClub").toUpperCase
-      )
-    }
-
-    val result = mutable.Map[String, List[ClubTransferData]]()
-
-    clubTransferRows.foreach(row => {
-      val transferIn = ClubTransferData(
-        row.memberId,
-        row.fobNumber,
-        row.firstName,
-        row.surname,
-        row.homeClub,
-        row.targetClub,
-        "TRANSFER IN",
-        LocalDate.now()
-      )
-
-      result.get(row.targetClub) match {
-        case Some(list) => result(row.targetClub) = result(row.targetClub) :+ transferIn
-        case None       => result(row.targetClub) = List(transferIn)
-      }
-
-      val transferOut = transferIn.copy(transferType = "TRANSFER OUT")
-      result.get(row.homeClub) match {
-        case Some(list) => result(row.homeClub) = result(row.homeClub) :+ transferOut
-        case None       => result(row.homeClub) = List(transferOut)
-      }
-    })
-
-    result.toMap
-  }
-
-  def readClubTransferDataImmutable(): IO[Map[String, List[ClubTransferData]]] = IO {
+  private def readClubTransferData(): IO[Map[String, List[ClubTransferData]]] = IO {
     val clubTransferInputData = CSVReader.open("dd_club_transfer.csv").allWithHeaders()
     val clubTransferRows = clubTransferInputData.map { row =>
       ClubTransferRow(
@@ -203,7 +162,7 @@ object ClubTransfer extends IOApp {
             resource.use { session =>
               for {
                 locationRepository <- LocationRepository.make(session)
-                data               <- readClubTransferDataImmutable()
+                data               <- readClubTransferData()
                 _                  <- writeToCsvFile(data)
                 _                  <- sendEmailToClub(data.keys.toList, session)
               } yield ExitCode.Success

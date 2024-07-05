@@ -15,6 +15,13 @@ val awsSdkVersion     = "2.25.68"
 val slf4jVersion      = "2.0.13"
 val scalaCsvVersion   = "2.0.0"
 
+inThisBuild(List(
+  scalaVersion := "3.3.3",
+  semanticdbEnabled := true,
+  semanticdbVersion := scalafixSemanticdb.revision,
+  scalafixOnCompile := true
+))
+
 lazy val root = (project in file("."))
   .settings(
     name             := "bondi",

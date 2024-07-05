@@ -19,26 +19,9 @@ object Test extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     for {
-//      _ <- sendEmail()
-      _ <- readData()
+      _ <- sendEmail()
     } yield ExitCode.Success
   }
-
-  def readData(): IO[Unit] =
-    for {
-      data          <- ClubTransfer.readClubTransferData()
-      _             <- IO.println(s"Data: $data")
-      immutableData <- ClubTransfer.readClubTransferDataImmutable()
-      _             <- IO.println(s"Immutable data: $immutableData")
-      - <- data.keys.toList.traverse_ { case club =>
-        val clubData  = data(club)
-        val clubData2 = immutableData(club)
-        IO.println(
-          s"club data size: ${clubData.length}, club data 2 size: ${clubData2.length}, equal? ${clubData == clubData2}"
-        )
-      }
-    } yield ()
-
   def sendEmail(): IO[Unit] = {
     for {
       _ <- EmailService.sendEmailWithAttachment(
