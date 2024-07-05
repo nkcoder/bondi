@@ -12,7 +12,6 @@ import natchez.Trace.Implicits.noop
 import skunk.Session
 
 import java.time.LocalDate
-import scala.collection.mutable
 import scala.concurrent.duration.DurationInt
 import scala.util.Properties
 

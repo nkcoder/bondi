@@ -1,7 +1,3 @@
-ThisBuild / version := "0.1.0"
-
-ThisBuild / scalaVersion := "3.3.3"
-
 // specify the main class to run
 //Compile / mainClass := Some("io.daniel.Main")
 //Compile / mainClass := Some("io.daniel.apps.RefundApp")
@@ -15,12 +11,19 @@ val awsSdkVersion     = "2.25.68"
 val slf4jVersion      = "2.0.13"
 val scalaCsvVersion   = "2.0.0"
 
-inThisBuild(List(
-  scalaVersion := "3.3.3",
-  semanticdbEnabled := true,
-  semanticdbVersion := scalafixSemanticdb.revision,
-  scalafixOnCompile := true
-))
+inThisBuild(
+  List(
+    version           := "0.1.0",
+    scalaVersion      := "3.4.2",
+    semanticdbEnabled := true,
+    semanticdbVersion := scalafixSemanticdb.revision,
+    scalafixOnCompile := true
+  )
+)
+
+scalacOptions ++= Seq(
+  "-Wunused:all"
+)
 
 lazy val root = (project in file("."))
   .settings(

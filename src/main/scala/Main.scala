@@ -38,7 +38,7 @@ object Main extends IOApp {
     DbConfig.load(env).fold(
       error => IO(println(error.toString)).as(ExitCode.Error),
       config =>
-//        runSessions(config)
+        runSessions(config)
         runOnMember(config)
     )
 
