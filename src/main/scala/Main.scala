@@ -1,15 +1,17 @@
 package io.daniel
 
+import scala.util.Properties
+
+import cats.effect.ExitCode
+import cats.effect.IO
+import cats.effect.IOApp
+import natchez.Trace.Implicits.noop
+import skunk._
+import skunk.codec.all._
+import skunk.syntax.all._
+
 import db.{DbConfig, DbConnection}
 import domain.member.{Member, MemberRepository}
-
-import cats.effect.{ExitCode, IO, IOApp}
-import natchez.Trace.Implicits.noop
-import skunk.*
-import skunk.codec.all.*
-import skunk.syntax.all.*
-
-import scala.util.Properties
 
 object Main extends IOApp {
   // local testing
@@ -35,12 +37,14 @@ object Main extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] =
     val env = Properties.envOrElse("APP_ENV", "local")
-    DbConfig.load(env).fold(
-      error => IO(println(error.toString)).as(ExitCode.Error),
-      config =>
-        runSessions(config)
-        runOnMember(config)
-    )
+    DbConfig
+      .load(env)
+      .fold(
+        error => IO(println(error.toString)).as(ExitCode.Error),
+        config =>
+          runSessions(config)
+          runOnMember(config)
+      )
 
   private def runSessions(dbConfig: DbConfig): IO[ExitCode] =
     singleSession(dbConfig) *> pooledSession(dbConfig) *> IO.pure(ExitCode.Success)

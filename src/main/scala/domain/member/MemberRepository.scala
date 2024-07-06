@@ -1,17 +1,20 @@
 package io.daniel
 package domain.member
 
-import db.Repository
-import domain.member.Member.memberCodec
+import java.util.UUID
 
 import cats.effect.Sync
-import cats.syntax.all.*
+import cats.syntax.all._
 import fs2.Stream
-import skunk.codec.all.*
-import skunk.syntax.all.*
-import skunk.{Command, Query, Session, Void}
+import skunk.Command
+import skunk.Query
+import skunk.Session
+import skunk.Void
+import skunk.codec.all._
+import skunk.syntax.all._
 
-import java.util.UUID
+import db.Repository
+import domain.member.Member.memberCodec
 
 final class MemberRepository[F[_]: Sync](session: Session[F]) extends Repository[F, Member](session) {
 

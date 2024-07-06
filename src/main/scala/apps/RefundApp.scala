@@ -1,24 +1,26 @@
 package io.daniel
 package apps
 
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.UUID
+
+import scala.io.Source
+import scala.util.Properties
+
+import cats.effect._
+import cats.implicits._
+import io.circe.generic.auto._
+import io.circe.parser
+import io.circe.syntax._
+import natchez.Trace.Implicits.noop
+import skunk._
+
 import db.{DbConfig, DbConnection}
 import domain.billing.BillingRepository
 import domain.member.MemberRepository
 import domain.refund.Refund
 import support.DateTimeUtil
-
-import cats.effect.*
-import cats.implicits.*
-import io.circe.generic.auto.*
-import io.circe.parser
-import io.circe.syntax.*
-import natchez.Trace.Implicits.noop
-import skunk.*
-
-import java.nio.file.{Files, Paths}
-import java.util.UUID
-import scala.io.Source
-import scala.util.Properties
 
 final case class InputItem(
     name: String,

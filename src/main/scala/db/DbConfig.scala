@@ -1,11 +1,12 @@
 package io.daniel
 package db
 
-import aws.SecretsManager
-
+import pureconfig.ConfigReader
+import pureconfig.ConfigSource
 import pureconfig.error.ConfigReaderFailures
-import pureconfig.generic.derivation.default.*
-import pureconfig.{ConfigReader, ConfigSource}
+import pureconfig.generic.derivation.default._
+
+import aws.SecretsManager
 
 case class DbConfig(
     host: String,

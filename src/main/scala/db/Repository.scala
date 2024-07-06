@@ -2,8 +2,10 @@ package io.daniel
 package db
 
 import cats.effect.Sync
-import cats.syntax.all.*
-import skunk.{Command, Query, Session}
+import cats.syntax.all._
+import skunk.Command
+import skunk.Query
+import skunk.Session
 
 /** A: the argument type
   *

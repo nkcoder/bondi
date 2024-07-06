@@ -1,13 +1,14 @@
 package io.daniel
 package aws
-import db.DbConfig
-
+import io.circe.Decoder
+import io.circe.Error
 import io.circe.generic.semiauto.deriveDecoder
 import io.circe.parser.decode
-import io.circe.{Decoder, Error}
 import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest
+
+import db.DbConfig
 
 object SecretsManager:
   implicit val dbConfigDecoder: Decoder[DbConfig] = deriveDecoder[DbConfig]

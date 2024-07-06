@@ -1,13 +1,14 @@
 package io.daniel
 package domain.location
 
-import db.Repository
-import domain.location.Location.locationCodec
-
 import cats.effect.Sync
-import skunk.{Query, Session}
+import skunk.Query
+import skunk.Session
 import skunk.codec.all.varchar
 import skunk.implicits.sql
+
+import db.Repository
+import domain.location.Location.locationCodec
 
 class LocationRepository[F[_]: Sync](session: Session[F]) extends Repository[F, Location](session) {
   import LocationRepository.*

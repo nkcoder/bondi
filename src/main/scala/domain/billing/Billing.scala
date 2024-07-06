@@ -1,11 +1,13 @@
 package io.daniel
 package domain.billing
 
-import cats.syntax.all.*
-import skunk.*
-import skunk.codec.all.{date, numeric, varchar}
-
 import java.time.LocalDate
+
+import cats.syntax.all._
+import skunk._
+import skunk.codec.all.date
+import skunk.codec.all.numeric
+import skunk.codec.all.varchar
 
 case class Billing(
     id: String,

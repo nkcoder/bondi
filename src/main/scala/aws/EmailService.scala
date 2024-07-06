@@ -1,20 +1,26 @@
 package io.daniel
 package aws
 
+import java.io.ByteArrayOutputStream
+import java.nio.ByteBuffer
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.Properties
+import javax.activation.DataHandler
+import javax.mail.Message
+import javax.mail.Session
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeBodyPart
+import javax.mail.internet.MimeMessage
+import javax.mail.internet.MimeMultipart
+import javax.mail.util.ByteArrayDataSource
+
 import cats.effect.IO
 import software.amazon.awssdk.core.SdkBytes
 import software.amazon.awssdk.regions.Region
-import software.amazon.awssdk.services.ses.model.{RawMessage, SendRawEmailRequest}
 import software.amazon.awssdk.services.ses.SesClient
-
-import java.io.ByteArrayOutputStream
-import java.nio.file.{Files, Paths}
-import java.nio.ByteBuffer
-import java.util.Properties
-import javax.activation.DataHandler
-import javax.mail.{Message, Session}
-import javax.mail.internet.{InternetAddress, MimeBodyPart, MimeMessage, MimeMultipart}
-import javax.mail.util.ByteArrayDataSource
+import software.amazon.awssdk.services.ses.model.RawMessage
+import software.amazon.awssdk.services.ses.model.SendRawEmailRequest
 
 object EmailService {
 

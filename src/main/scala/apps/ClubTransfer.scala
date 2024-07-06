@@ -1,19 +1,23 @@
 package io.daniel
 package apps
 
-import aws.EmailService
-import db.{DbConfig, DbConnection}
-import domain.location.LocationRepository
+import java.time.LocalDate
 
-import cats.effect.{ExitCode, IO, IOApp}
-import cats.syntax.all.*
-import com.github.tototoshi.csv.{CSVReader, CSVWriter}
+import scala.concurrent.duration.DurationInt
+import scala.util.Properties
+
+import cats.effect.ExitCode
+import cats.effect.IO
+import cats.effect.IOApp
+import cats.syntax.all._
+import com.github.tototoshi.csv.CSVReader
+import com.github.tototoshi.csv.CSVWriter
 import natchez.Trace.Implicits.noop
 import skunk.Session
 
-import java.time.LocalDate
-import scala.concurrent.duration.DurationInt
-import scala.util.Properties
+import aws.EmailService
+import db.{DbConfig, DbConnection}
+import domain.location.LocationRepository
 
 /** Use the scala-csv library.
   *

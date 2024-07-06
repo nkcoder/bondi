@@ -1,9 +1,11 @@
 package io.daniel
 package domain.member
 
-import cats.syntax.all.*
+import cats.syntax.all._
 import skunk.Codec
-import skunk.codec.all.{int4, numeric, varchar}
+import skunk.codec.all.int4
+import skunk.codec.all.numeric
+import skunk.codec.all.varchar
 
 case class Member(
     id: String,

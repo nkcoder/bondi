@@ -1,7 +1,7 @@
 package io.daniel
 package domain.location
 
-import cats.syntax.all.*
+import cats.syntax.all._
 import skunk.Codec
 import skunk.codec.all.varchar
 

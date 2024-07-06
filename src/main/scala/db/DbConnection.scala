@@ -1,11 +1,11 @@
 package io.daniel
 package db
 
-import cats.effect.*
+import cats.effect._
 import cats.effect.std.Console
 import fs2.io.net.Network
 import natchez.Trace
-import skunk.*
+import skunk._
 
 object DbConnection:
   def single[F[_]: Temporal: Trace: Network: Console](config: DbConfig): Resource[F, Session[F]] =

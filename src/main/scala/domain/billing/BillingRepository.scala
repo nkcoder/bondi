@@ -1,14 +1,16 @@
 package io.daniel
 package domain.billing
 
-import db.Repository
-
 import cats.effect.Sync
-import cats.syntax.all.*
+import cats.syntax.all._
 import fs2.Stream
-import skunk.codec.all.*
-import skunk.syntax.all.*
-import skunk.{Query, Session, Void}
+import skunk.Query
+import skunk.Session
+import skunk.Void
+import skunk.codec.all._
+import skunk.syntax.all._
+
+import db.Repository
 
 final class BillingRepository[F[_]: Sync](session: Session[F]) extends Repository[F, Billing](session) {
   import BillingRepository.*

@@ -1,10 +1,12 @@
 package io.daniel
 package support
 
-import cats.effect.IO
-
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.time.{Instant, LocalDate, ZoneOffset}
+
+import cats.effect.IO
 
 object DateTimeUtil:
   def nowInUTC: IO[String] = IO {

@@ -3,11 +3,13 @@
 //Compile / mainClass := Some("io.daniel.apps.RefundApp")
 Compile / mainClass := Some("io.daniel.apps.ClubTransfer")
 
+val catsCoreVersion   = "2.12.0"
+val catsEffectVersion = "3.5.4"
 val circeVersion      = "0.14.9"
 val skunkVersion      = "0.6.4"
 val pureConfigVersion = "0.17.7"
 val scalaTestVersion  = "3.2.18"
-val awsSdkVersion     = "2.25.68"
+val awsSdkVersion     = "2.26.16"
 val slf4jVersion      = "2.0.13"
 val scalaCsvVersion   = "2.0.0"
 
@@ -30,6 +32,8 @@ lazy val root = (project in file("."))
     name             := "bondi",
     idePackagePrefix := Some("io.daniel"),
     libraryDependencies ++= Seq(
+      "org.typelevel"         %% "cats-core"       % catsCoreVersion,
+      "org.typelevel"         %% "cats-effect"     % catsEffectVersion,
       "org.scalatest"         %% "scalatest"       % scalaTestVersion % Test,
       "org.tpolecat"          %% "skunk-core"      % skunkVersion,
       "io.circe"              %% "circe-core"      % circeVersion,
