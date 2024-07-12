@@ -1,26 +1,25 @@
 package io.daniel
 package apps
 
-import java.nio.file.Files
-import java.nio.file.Paths
+import java.nio.file.{Files, Paths}
 import java.util.UUID
 
 import scala.io.Source
 import scala.util.Properties
-
-import cats.effect._
-import cats.implicits._
-import io.circe.generic.auto._
-import io.circe.parser
-import io.circe.syntax._
-import natchez.Trace.Implicits.noop
-import skunk._
 
 import db.{DbConfig, DbConnection}
 import domain.billing.BillingRepository
 import domain.member.MemberRepository
 import domain.refund.Refund
 import support.DateTimeUtil
+
+import cats.effect.*
+import cats.implicits.*
+import io.circe.generic.auto.*
+import io.circe.parser
+import io.circe.syntax.*
+import natchez.Trace.Implicits.noop
+import skunk.*
 
 final case class InputItem(
     name: String,
@@ -35,7 +34,7 @@ final case class InputItem(
 
 /** RefundApp reads input records from a file, generates refund transactions, and writes the output to a file.
   */
-object RefundApp extends IOApp:
+object RefundApp extends IOApp.Simple:
 
   private def generateRefundTransaction(inputRecord: InputItem, session: Session[IO]): IO[Option[Refund]] =
     for {
@@ -98,16 +97,16 @@ object RefundApp extends IOApp:
       Files.write(file, data.getBytes())
     }
 
-  def run(args: List[String]): IO[ExitCode] =
+  def run: IO[Unit] =
     val env = Properties.envOrElse("APP_ENV", "local")
     DbConfig
       .load(env)
       .fold(
-        error => IO(println(error)).as(ExitCode.Error),
+        error => IO(println(error)),
         config => doProcessRefund(config)
       )
 
-  private def doProcessRefund(dbConfig: DbConfig): IO[ExitCode] =
+  private def doProcessRefund(dbConfig: DbConfig): IO[Unit] =
     DbConnection.pooled[IO](dbConfig).use { resource =>
       resource.use { session =>
         for {
@@ -116,6 +115,6 @@ object RefundApp extends IOApp:
           refundTransactions <- allRecords.traverse(inputItem => generateRefundTransaction(inputItem, session))
           _                  <- saveToFile(refundTransactions.flatten.asJson.spaces2)
           _ = println("Output file generated successfully!")
-        } yield ExitCode.Success
+        } yield ()
       }
     }

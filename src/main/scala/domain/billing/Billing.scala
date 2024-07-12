@@ -24,7 +24,7 @@ object Billing {
   /** encoder and decoder: Postgres column type to Scala type and vice versa
     */
   val billingCodec: Codec[Billing] =
-    (varchar(50), varchar(50), varchar(50), varchar(50), date, numeric(10, 5), varchar(20)).tupled.imap {
+    (varchar(50), varchar(50), varchar(50), varchar(50), date, numeric(20, 5), varchar(20)).tupled.imap {
       case (id, locationId, memberId, contractId, debitDate, debitAmount, paymentType) =>
         Billing(id, locationId, memberId, contractId, debitDate, debitAmount, paymentType)
     } { billing =>

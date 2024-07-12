@@ -23,7 +23,7 @@ object Member {
     *   database
     */
   val memberCodec: Codec[Member] =
-    (varchar(50), varchar(512), varchar(512), numeric(14, 5).opt, int4.opt).tupled.imap {
+    (varchar(50), varchar(512), varchar(512), numeric(27, 5).opt, int4.opt).tupled.imap {
       case (id, mobileNumber, email, outstandingBalance, ddFailureCount) =>
         Member(id, mobileNumber, email, outstandingBalance, ddFailureCount)
     } { member =>
