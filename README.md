@@ -1,11 +1,20 @@
+> Bondi Beach: A world-famous beach in Sydney known for its golden sands, surf-friendly waves, vibrant beach culture,
+> and the iconic Bondi Icebergs swimming club.
+
 ## Introduction
 
-A playground project using:
+A Scala 3 sample project that connects to PostgreSQL using [Skunk](https://github.com/typelevel/skunk).
+
+**Topics**:
 
 - [Scala 3](https://scala-lang.org/)
 - [Skunk](https://github.com/typelevel/skunk): a functional PostgreSQL client for Scala.
 - [PureConfig](https://github.com/pureconfig/pureconfig): a Scala library for loading configuration files.
 - [PostgreSQL](https://www.postgresql.org/): a powerful, open source object-relational database system.
+- [cats](https://typelevel.org/cats/): a library that provides abstractions for functional programming in Scala.
+- [cats-effect](https://typelevel.org/cats-effect/): a library that provides abstractions for effectful programming in
+  Scala.
+- [circe](https://circe.github.io/circe/): a JSON library for Scala.
 
 ## Setup
 

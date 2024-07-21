@@ -46,10 +46,10 @@ case class ClubTransferData(
   */
 object ClubTransfer extends IOApp {
 
-  val sender           = "noreply@the-hub.ai"
-  val subject          = "Club Transfer for Direct Debit Members"
+  private val sender   = "noreply@the-hub.ai"
+  private val subject  = "Club Transfer for Direct Debit Members"
   private val toDaniel = "daniel.guo@vivalabs.com.au"
-  val body =
+  private val body =
     """
       |<html>
       |<head></head>
