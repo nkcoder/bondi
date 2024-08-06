@@ -26,6 +26,6 @@ object LocationRepository {
     sql"""
          SELECT id, name, email
          FROM location
-         WHERE name = $varchar
+         WHERE TRIM(name) = $varchar
        """.query(locationCodec)
 }
