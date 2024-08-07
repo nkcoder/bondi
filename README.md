@@ -3,7 +3,12 @@
 
 ## Introduction
 
-A Scala 3 sample project that connects to PostgreSQL using [Skunk](https://github.com/typelevel/skunk).
+I have a deep passion for Scala and Functional Programming, although my professional work predominantly involves
+JavaScript and TypeScript on Node.js.
+
+To bridge this gap, I initiated this project to handle various one-time or recurring tasks. More importantly,
+this project serves as a platform for me to learn and practice Scala 3, delve into Functional Programming with libraries
+like Cats and ZIO, and explore other Scala libraries.
 
 **Topics**:
 
@@ -16,35 +21,58 @@ A Scala 3 sample project that connects to PostgreSQL using [Skunk](https://githu
   Scala.
 - [circe](https://circe.github.io/circe/): a JSON library for Scala.
 
+## Apps
+
+### RefundApp
+
+**Run**:
+
+```shell
+auto/dev io.daniel.apps.RefundApp
+auto/prod io.daniel.apps.RefundApp
+```
+
+### ClubTransfer
+
+Read a CSV file, then send emails using AWS SES client.
+
+**Run**:
+
+```shell
+auto/dev io.daniel.apps.ClubTransfer
+auto/prod io.daniel.apps.ClubTransfer
+```
+
+### FixDuplicateEmails
+
+Read a plain text file with emails, query and update Dynamodb data using AWS SDK.
+
+```shell
+auto/dev io.daniel.apps.FixDuplicateEmails
+auto/prod io.daniel.apps.FixDuplicateEmails
+```
+
 ## Setup
 
-Start the PostgreSQL database using Docker:
+Start the local PostgreSQL database using Docker:
 
 ```shell
 docker compose  up
 ```
 
-Run the application:
+## Trouble Shooting
 
-```shell
-auto/local io.daniel.Main
-auto/dev io.daniel.apps.RefundApp
-auto/prod io.daniel.apps.RefundApp
-```
+### How to specify the application to run
 
-How to specify the application to run:
-
-- Setting the mainClass in build.sbt
+- Setting the mainClass in `build.sbt`
     ```sbt
     Compile / mainClass := Some("io.daniel.Main")
     Compile / mainClass := Some("io.daniel.apps.RefundApp")
     ```
 - Using the `run` task with the `--main` option
     ```shell
-    sbt "runRun io.daniel.Main"
+    sbt "runMain io.daniel.apps.FixDuplicateEmails"
     ```
-
-## Trouble Shooting
 
 ### Secrets Manager can't find the specified secret.
 
@@ -61,3 +89,5 @@ How to specify the application to run:
 - [The Skunk Scala Library for Database Interaction: A Comprehensive Guide](https://blog.rockthejvm.com/skunk-complete-guide/#8-sql-interpolation-query-and-command)
 - [PureConfig doc](https://pureconfig.github.io/docs/)
 - [Skunk doc](https://typelevel.org/skunk/)
+- [Cats doc](https://typelevel.org/cats/)
+- [Cats Effect doc](https://typelevel.org/cats-effect/)

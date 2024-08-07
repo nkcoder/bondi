@@ -36,6 +36,14 @@ final case class InputItem(
 /** RefundApp reads input records from a file, generates refund transactions, and writes the output to a file.
   */
 object RefundApp extends IOApp.Simple:
+  def run: IO[Unit] =
+    val env = Properties.envOrElse("APP_ENV", "local")
+    DbConfig
+      .load(env)
+      .fold(
+        error => IO(println(error)),
+        config => doProcessRefund(config)
+      )
 
   private def generateRefundTransaction(inputRecord: InputItem, session: Session[IO]): IO[Option[Refund]] =
     for {
@@ -97,15 +105,6 @@ object RefundApp extends IOApp.Simple:
       val file = Paths.get("refund_output.json")
       Files.write(file, data.getBytes())
     }
-
-  def run: IO[Unit] =
-    val env = Properties.envOrElse("APP_ENV", "local")
-    DbConfig
-      .load(env)
-      .fold(
-        error => IO(println(error)),
-        config => doProcessRefund(config)
-      )
 
   private def doProcessRefund(dbConfig: DbConfig): IO[Unit] =
     DbConnection.pooled[IO](dbConfig).use { resource =>

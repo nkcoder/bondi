@@ -49,7 +49,9 @@ case class ClubTransferData(
 enum PaymentType:
   case PIF, DD
 
-/** Be careful running the application, because it will send **real** emails to the clubs.
+/**
+ * Send emails to clubs after the Inter Club Transfer is done.
+ * Be careful running the application, because it will send **real** emails to the clubs.
   */
 object ClubTransfer extends IOApp {
 

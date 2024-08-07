@@ -9,7 +9,7 @@ val circeVersion      = "0.14.9"
 val skunkVersion      = "0.6.4"
 val pureConfigVersion = "0.17.7"
 val scalaTestVersion  = "3.2.18"
-val awsSdkVersion     = "2.26.16"
+val awsSdkVersion     = "2.26.30"
 val slf4jVersion      = "2.0.13"
 val scalaCsvVersion   = "2.0.0"
 
@@ -45,6 +45,7 @@ lazy val root = (project in file("."))
       "software.amazon.awssdk" % "sqs"             % awsSdkVersion,
       "software.amazon.awssdk" % "sns"             % awsSdkVersion,
       "software.amazon.awssdk" % "ses"             % awsSdkVersion,
+      "software.amazon.awssdk" % "dynamodb"        % awsSdkVersion,
       "org.slf4j"              % "slf4j-api"       % slf4jVersion,
       "org.slf4j"              % "slf4j-nop"       % slf4jVersion,
       "com.github.tototoshi"  %% "scala-csv"       % scalaCsvVersion,
