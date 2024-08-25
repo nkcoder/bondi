@@ -16,7 +16,7 @@ val scalaCsvVersion   = "2.0.0"
 inThisBuild(
   List(
     version           := "0.1.0",
-    scalaVersion      := "3.4.2",
+    scalaVersion      := "3.5.0",
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     scalafixOnCompile := true

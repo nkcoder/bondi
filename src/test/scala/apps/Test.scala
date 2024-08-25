@@ -1,10 +1,11 @@
 package io.daniel
 package apps
 
-import aws.EmailService
+import cats.effect.ExitCode
+import cats.effect.IO
+import cats.effect.IOApp
 
-import cats.effect.{ExitCode, IO, IOApp}
-import cats.syntax.all.*
+import aws.EmailService
 
 object Test extends IOApp {
   val body =
