@@ -114,7 +114,7 @@ object ClubTransfer extends IOApp {
             surname,
             homeClub,
             targetClub,
-            paymentType,
+            transferType,
             transferDate.toString
           )
         )
@@ -164,8 +164,8 @@ object ClubTransfer extends IOApp {
               val email = location.email.get
               println(s"Location email: $email")
               val clubTransferFile = buildFileName(paymentType, Some(clubName))
-//              EmailService.sendEmailWithAttachment(sender, email, subject, body, fileName)
-              EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, clubTransferFile)
+              EmailService.sendEmailWithAttachment(sender, email, subject, body, clubTransferFile)
+//              EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, clubTransferFile)
             case None =>
               IO.println(s"--- Location not found for club: $clubName ---")
             case _ =>
@@ -185,14 +185,16 @@ object ClubTransfer extends IOApp {
       case PIF => s"pif_club_transfer$suffix.csv"
     }
 
-  /** <p> How to run the application:
+  /** {{{
+    *  How to run the application:
     *   - change the `paymentType`
     *   - put the corresponding csv file in the `root` folder
-    *   - run the application: auto/prod io.daniel.apps.ClubTransfer </p>
+    *   - run the application: auto/prod io.daniel.apps.ClubTransfer
+    * }}}
     */
   override def run(args: List[String]): IO[ExitCode] = {
     val env         = Properties.envOrElse("APP_ENV", "local")
-    val paymentType = PaymentType.DD
+    val paymentType = PaymentType.PIF
 
     DbConfig
       .load(env)
