@@ -36,6 +36,15 @@ auto/prod io.daniel.apps.RefundApp
 
 Read a CSV file, then send emails using AWS SES client.
 
+How to run the application:
+
+- changeAwsProfileToProd
+- change the `paymentType` to `PIF` or `DD`
+- put the corresponding csv file in the `root` folder, file name should be `pif_club_transfer.csv` or
+  `dd_club_transfer.csv`
+- run the application: auto/prod io.daniel.apps.ClubTransfer
+- can test by changing #168 to `toDaniel` email
+
 **Run**:
 
 ```shell

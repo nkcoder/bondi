@@ -30,7 +30,7 @@ object Test extends IOApp {
         recipient = "daniel.guo@vivalabs.com.au",
         subject = "Test for DD Club Transfer",
         body = body,
-        "dd_club_transfer_WILEY PARK.csv"
+        "test.csv"
       )
     } yield ()
   }

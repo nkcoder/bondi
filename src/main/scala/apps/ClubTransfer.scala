@@ -187,14 +187,16 @@ object ClubTransfer extends IOApp {
 
   /** {{{
     *  How to run the application:
-    *   - change the `paymentType`
-    *   - put the corresponding csv file in the `root` folder
+    *   - changeAwsProfileToProd
+    *   - change the `paymentType` to `PIF` or `DD`
+    *   - put the corresponding csv file in the `root` folder, file name should be `pif_club_transfer.csv` or `dd_club_transfer.csv`
     *   - run the application: auto/prod io.daniel.apps.ClubTransfer
+    *   - can test by changing #168 to `toDaniel` email
     * }}}
     */
   override def run(args: List[String]): IO[ExitCode] = {
     val env         = Properties.envOrElse("APP_ENV", "local")
-    val paymentType = PaymentType.PIF
+    val paymentType = PaymentType.DD
 
     DbConfig
       .load(env)
