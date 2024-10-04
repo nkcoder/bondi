@@ -4,14 +4,17 @@ package apps
 import java.time.LocalDate
 
 import scala.concurrent.duration.DurationInt
+import scala.io.Source
 import scala.util.Properties
+import scala.util.Using
 
 import cats.effect.ExitCode
 import cats.effect.IO
 import cats.effect.IOApp
 import cats.syntax.all._
-import com.github.tototoshi.csv.CSVReader
 import com.github.tototoshi.csv.CSVWriter
+import io.circe.generic.auto._
+import io.circe.parser.decode
 import natchez.Trace.Implicits.noop
 import skunk.Session
 
@@ -20,7 +23,7 @@ import aws.EmailService
 import db.{DbConfig, DbConnection}
 import domain.location.LocationRepository
 
-/** Use the scala-csv library.
+/** Use the scala-csv and circe library.
   *
   * Read club transfer data from a csv file, generate club transfer transactions, and write the output to a csv file for
   * each club. Finally, send an email to each club with the club transfer transactions.
@@ -49,25 +52,31 @@ case class ClubTransferData(
 enum PaymentType:
   case PIF, DD
 
-/**
- * Send emails to clubs after the Inter Club Transfer is done.
- * Be careful running the application, because it will send **real** emails to the clubs.
+/** Send emails to clubs after the Inter Club Transfer is done. Be careful running the application, because it will send
+  * **real** emails to the clubs.
   */
 object ClubTransfer extends IOApp {
 
   private def readClubTransferData(paymentType: PaymentType): IO[Map[String, List[ClubTransferData]]] = IO {
-    val transferFileName      = buildFileName(paymentType, None)
-    val clubTransferInputData = CSVReader.open(transferFileName).allWithHeaders()
-    val clubTransferRows = clubTransferInputData.map { row =>
-      ClubTransferRow(
-        row("memberId"),
-        row("fobNumber"),
-        row("firstName"),
-        row("surname"),
-        row("homeClub").toUpperCase,
-        row("targetClub").toUpperCase
-      )
-    }
+    def getInputFileName(paymentType: PaymentType): String =
+      paymentType match {
+        case DD  => "dd_club_transfer.json"
+        case PIF => "pif_club_transfer.json"
+      }
+
+    val transferFileName = getInputFileName(paymentType)
+    val clubTransferRows = Using(Source.fromResource(transferFileName)) { source =>
+      val jsonString = source.getLines().mkString
+      decode[List[ClubTransferRow]](jsonString).map { rows =>
+        rows.map(row => row.copy(homeClub = row.homeClub.toUpperCase, targetClub = row.targetClub.toUpperCase))
+      }
+    }.toEither.flatten.fold(
+      error => {
+        println(s"Error reading club transfer data: $error")
+        List.empty
+      },
+      identity
+    )
 
     val transfers = clubTransferRows.flatMap { row =>
       val transferIn = ClubTransferData(
@@ -88,41 +97,39 @@ object ClubTransfer extends IOApp {
     transfers.groupMap(_._1)(_._2)
   }
 
-  private def writeToCsvFile(data: Map[String, List[ClubTransferData]], paymentType: PaymentType): IO[Unit] = IO {
-    data.foreach { case (club, transfers) =>
-      val clubFileName = buildFileName(paymentType, Some(club))
-      val writer       = CSVWriter.open(clubFileName)
-      writer.writeRow(
-        List(
-          "Member ID",
-          "FOB Number",
-          "First Name",
-          "Surname",
-          "Home Club",
-          "Target Club",
-          "Transfer Type",
-          "Transfer Date"
-        )
-      )
-      transfers.foreach { transfer =>
-        import transfer.*
+  private def getOutputFileName(paymentType: PaymentType, clubName: String): String =
+    paymentType match {
+      case DD  => s"dd_club_transfer_$clubName.csv"
+      case PIF => s"pif_club_transfer_$clubName.csv"
+    }
+
+  private def writeClubTransferData(data: Map[String, List[ClubTransferData]], paymentType: PaymentType): IO[Unit] =
+    IO {
+      data.foreach { case (club, transfers) =>
+        val clubFileName = getOutputFileName(paymentType, club)
+        val writer       = CSVWriter.open(clubFileName)
         writer.writeRow(
           List(
-            memberId,
-            fobNumber,
-            firstName,
-            surname,
-            homeClub,
-            targetClub,
-            transferType,
-            transferDate.toString
+            "Member ID",
+            "FOB Number",
+            "First Name",
+            "Surname",
+            "Home Club",
+            "Target Club",
+            "Transfer Type",
+            "Transfer Date"
           )
         )
-      }
+        transfers.foreach { transfer =>
+          import transfer.*
+          writer.writeRow(
+            List(memberId, fobNumber, firstName, surname, homeClub, targetClub, transferType, transferDate.toString)
+          )
+        }
 
-      writer.close()
+        writer.close()
+      }
     }
-  }
 
   private def sendEmailToClub(clubs: List[String], session: Session[IO], paymentType: PaymentType): IO[Unit] = {
     val sender = "noreply@the-hub.ai"
@@ -141,7 +148,6 @@ object ClubTransfer extends IOApp {
           s"Please find attached the Direct Debit club transfer data for your club ($lastQuarter - $lastMonth 2024)."
         )
 
-    val toDaniel = "daniel.guo@vivalabs.com.au"
     val body =
       s"""
         |<html>
@@ -163,9 +169,12 @@ object ClubTransfer extends IOApp {
             case Some(location) if location.email.isDefined =>
               val email = location.email.get
               println(s"Location email: $email")
-              val clubTransferFile = buildFileName(paymentType, Some(clubName))
-              EmailService.sendEmailWithAttachment(sender, email, subject, body, clubTransferFile)
-//              EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, clubTransferFile)
+              val clubTransferFile = getOutputFileName(paymentType, clubName)
+
+//              EmailService.sendEmailWithAttachment(sender, email, subject, body, clubTransferFile)
+
+              val toDaniel = "daniel.guo@vivalabs.com.au"
+              EmailService.sendEmailWithAttachment(sender, toDaniel, subject, body, clubTransferFile)
             case None =>
               IO.println(s"--- Location not found for club: $clubName ---")
             case _ =>
@@ -177,13 +186,6 @@ object ClubTransfer extends IOApp {
       }
     } yield ()
   }
-
-  private def buildFileName(paymentType: PaymentType, maybeSuffix: Option[String]): String =
-    val suffix = maybeSuffix.fold("")(name => s"_$name")
-    paymentType match {
-      case DD  => s"dd_club_transfer$suffix.csv"
-      case PIF => s"pif_club_transfer$suffix.csv"
-    }
 
   /** {{{
     *  How to run the application:
@@ -206,10 +208,9 @@ object ClubTransfer extends IOApp {
           DbConnection.pooled[IO](config).use { resource =>
             resource.use { session =>
               for {
-                locationRepository <- LocationRepository.make(session)
-                data               <- readClubTransferData(paymentType)
-                _                  <- writeToCsvFile(data, paymentType)
-                _                  <- sendEmailToClub(data.keys.toList, session, paymentType)
+                data <- readClubTransferData(paymentType)
+                _    <- writeClubTransferData(data, paymentType)
+                _    <- sendEmailToClub(data.keys.toList, session, paymentType)
               } yield ExitCode.Success
             }
           }
