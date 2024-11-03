@@ -34,6 +34,7 @@ case class ClubTransferRow(
     fobNumber: String,
     firstName: String,
     surname: String,
+    membershipName: String,
     homeClub: String,
     targetClub: String
 )
@@ -43,6 +44,7 @@ case class ClubTransferData(
     fobNumber: String,
     firstName: String,
     surname: String,
+    membershipName: String,
     homeClub: String,
     targetClub: String,
     transferType: String,
@@ -84,6 +86,7 @@ object ClubTransfer extends IOApp {
         row.fobNumber,
         row.firstName,
         row.surname,
+        row.membershipName,
         row.homeClub,
         row.targetClub,
         "TRANSFER IN",
@@ -114,6 +117,7 @@ object ClubTransfer extends IOApp {
             "FOB Number",
             "First Name",
             "Surname",
+            "Membership Name",
             "Home Club",
             "Target Club",
             "Transfer Type",
@@ -123,7 +127,17 @@ object ClubTransfer extends IOApp {
         transfers.foreach { transfer =>
           import transfer.*
           writer.writeRow(
-            List(memberId, fobNumber, firstName, surname, homeClub, targetClub, transferType, transferDate.toString)
+            List(
+              memberId,
+              fobNumber,
+              firstName,
+              surname,
+              membershipName,
+              homeClub,
+              targetClub,
+              transferType,
+              transferDate.toString
+            )
           )
         }
 
@@ -133,19 +147,20 @@ object ClubTransfer extends IOApp {
 
   private def sendEmailToClub(clubs: List[String], session: Session[IO], paymentType: PaymentType): IO[Unit] = {
     val sender = "noreply@the-hub.ai"
-
     val lastMonth = LocalDate.now().minusMonths(1).getMonth
+    val currentYear = LocalDate.now().getYear
+
     val (subject, bodyContent) = paymentType match
       case PIF =>
         (
-          "Club Transfer for Paid in Full Members",
-          s"Please find attached the Paid in Full club transfer data for your club ($lastMonth 2024)."
+          s"Club Transfer for Paid in Full Members ($lastMonth $currentYear)",
+          s"Please find attached the Paid in Full club transfer data for your club ($lastMonth $currentYear)."
         )
       case DD =>
         val lastQuarter = LocalDate.now().minusMonths(3).getMonth
         (
-          "Club Transfer for Direct Debit Members",
-          s"Please find attached the Direct Debit club transfer data for your club ($lastQuarter - $lastMonth 2024)."
+          s"Club Transfer for Direct Debit Members ($lastQuarter - $lastMonth $currentYear)",
+          s"Please find attached the Direct Debit club transfer data for your club ($lastQuarter - $lastMonth $currentYear)."
         )
 
     val body =
@@ -198,7 +213,7 @@ object ClubTransfer extends IOApp {
     */
   override def run(args: List[String]): IO[ExitCode] = {
     val env         = Properties.envOrElse("APP_ENV", "local")
-    val paymentType = PaymentType.DD
+    val paymentType = PaymentType.PIF
 
     DbConfig
       .load(env)
