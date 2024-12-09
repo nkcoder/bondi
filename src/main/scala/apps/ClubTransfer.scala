@@ -34,7 +34,7 @@ case class ClubTransferRow(
     fobNumber: String,
     firstName: String,
     surname: String,
-    membershipName: String,
+    membershipType: String,
     homeClub: String,
     targetClub: String
 )
@@ -44,7 +44,7 @@ case class ClubTransferData(
     fobNumber: String,
     firstName: String,
     surname: String,
-    membershipName: String,
+    membershipType: String,
     homeClub: String,
     targetClub: String,
     transferType: String,
@@ -86,7 +86,7 @@ object ClubTransfer extends IOApp {
         row.fobNumber,
         row.firstName,
         row.surname,
-        row.membershipName,
+        row.membershipType,
         row.homeClub,
         row.targetClub,
         "TRANSFER IN",
@@ -117,7 +117,7 @@ object ClubTransfer extends IOApp {
             "FOB Number",
             "First Name",
             "Surname",
-            "Membership Name",
+            "Membership Type",
             "Home Club",
             "Target Club",
             "Transfer Type",
@@ -132,7 +132,7 @@ object ClubTransfer extends IOApp {
               fobNumber,
               firstName,
               surname,
-              membershipName,
+              membershipType,
               homeClub,
               targetClub,
               transferType,
@@ -146,8 +146,8 @@ object ClubTransfer extends IOApp {
     }
 
   private def sendEmailToClub(clubs: List[String], session: Session[IO], paymentType: PaymentType): IO[Unit] = {
-    val sender = "noreply@the-hub.ai"
-    val lastMonth = LocalDate.now().minusMonths(1).getMonth
+    val sender      = "noreply@the-hub.ai"
+    val lastMonth   = LocalDate.now().minusMonths(1).getMonth
     val currentYear = LocalDate.now().getYear
 
     val (subject, bodyContent) = paymentType match

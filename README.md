@@ -42,7 +42,7 @@ How to run the application:
 - change the `paymentType` to `PIF` or `DD`
 - put the corresponding csv file in the `src/main/resources` folder, file name should be `pif_club_transfer.json` or
   `dd_club_transfer.json`
-- run the application: auto/prod io.daniel.apps.ClubTransfer
+- run the application: `auto/prod io.daniel.apps.ClubTransfer`
 - can test by changing #185 to `toDaniel` email
 
 **Run**:
