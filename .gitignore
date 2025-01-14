@@ -6,3 +6,4 @@ target
 *.json
 *.csv
 *.txt
+.bsp
