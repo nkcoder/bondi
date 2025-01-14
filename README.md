@@ -40,8 +40,9 @@ How to run the application:
 
 - changeAwsProfileToProd
 - change the `paymentType` to `PIF` or `DD`
-- put the corresponding csv file in the `src/main/resources` folder, file name should be `pif_club_transfer.json` or
-  `dd_club_transfer.json`
+- put the corresponding input file in the `src/main/resources` folder
+  - if the format is `json` (`pif_club_transfer.json`, `dd_club_transfer.json`): git checkout version/json_input
+  - if the format is `csv` (`pif_club_transfer.csv`, `dd_club_transfer.csv`): git checkout version/csv_input
 - run the application: `auto/prod io.daniel.apps.ClubTransfer`
 - can test by changing #185 to `toDaniel` email
 
